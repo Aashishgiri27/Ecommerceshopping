@@ -1,0 +1,46 @@
+.admincontainer{
+    display: flex;
+    flex-direction: row;
+}
+.verticalheader{
+    height: 100vh;
+    width: 20vw;
+    background-color: aqua;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+}
+.adminheader{
+    height: 50px;
+    width: 80vw;
+    display: block;
+    background-color: aliceblue;
+    border-bottom: 2px solid black;
+
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 10px 20px -5px, rgba(0, 0, 0, 0.3) 0px 2px 10px -13px;
+     */
+     box-shadow: rgba(0, 0, 0, 0.35) 0px -20px 26px -28px inset;
+}
+.verticalheaderitem{
+    display: flex;
+    flex-direction: column;
+
+}
+.adminheaderitem{
+    height: 50px;
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    /* background-color: antiquewhite; */
+    /* margin: 0px 20px 0px 20px; */
+    /* border-bottom: 2px solid black; */
+    text-align: center  ;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 25px;
+  
+    
+}
+.adminheader p{
+    font-size: 35px;
+
+}

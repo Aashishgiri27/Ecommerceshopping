@@ -1,0 +1,49 @@
+.header{
+    height: 80px;
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    /* animation: backInDown;
+    animation-duration: 1s; */
+   
+}
+.headersection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+  
+}
+.headeritem{
+    /* border: 3px solid rgb(141, 113, 213); */
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 0px 20px 0px 20px;
+
+    color: black;
+    /* font-size: 25px; */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px; 
+}
+
+.signin{
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    background-color: rgb(43, 99, 189);
+    border-radius: 10px;
+    font-size: 20px;
+    /* border: 2px solid rgb(119, 115, 115); */
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+h1{
+    align-content: center;
+    /* animation: flipInY;
+    animation-duration: 2s; */
+   
+}
