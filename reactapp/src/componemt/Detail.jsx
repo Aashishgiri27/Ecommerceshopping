@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
@@ -8,6 +8,8 @@ function Detail() {
   const { id } = useParams();
   // console.log(id);
   const [product, setProduct] = useState(null);
+  const navigate=useNavigate()
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -29,6 +31,12 @@ function Detail() {
   if (!product) {
     return <div>Loading...</div>;
   }
+
+  
+  const addtocart =()=>{
+     navigate("/product/login")
+  }
+  
 
   return (
     <div>
@@ -104,7 +112,8 @@ function Detail() {
             </div>
           </div>
           <div className="mt-6">
-            <button className="bg-primary bg-slate-700 text-primary-foreground p-3 rounded-lg w-full">
+            
+            <button className="bg-primary bg-slate-700 text-primary-foreground p-3 rounded-lg w-full" onClick={addtocart}>
               Add To Cart
             </button>
             <button className="bg-accent bg-blue-600 text-accent-foreground p-3 rounded-lg w-full mt-2">

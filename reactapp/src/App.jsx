@@ -21,16 +21,15 @@ import Contact from "./componemt/Contact";
 function App() {
   return (
     <div>
-       <Routes>
-        <Route path="/admin">
+      
+     
+      <Routes>
+      <Route path="/admin">
           <Route path="products" element={<Adminproduct/>}></Route>
           <Route path="order" element={<Adminorder/>}></Route>
           <Route path="additem" element={<Additem/>}></Route>
 
         </Route>
-      </Routes>
-     
-      <Routes>
         <Route path="/" element={<Product />}></Route>
         <Route path="/product/:id" element={<Detail/>} ></Route>
         <Route path="/:product/:name/:id" element={<Detail/>} ></Route>

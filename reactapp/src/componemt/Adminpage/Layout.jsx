@@ -20,6 +20,10 @@ const navitem = [
     label: "Add item",
     href: "/admin/additem",
   },
+  {
+    label:"Users",
+    href:"/admin/user"
+  }
 ];
 
 function Layout({ children }) {

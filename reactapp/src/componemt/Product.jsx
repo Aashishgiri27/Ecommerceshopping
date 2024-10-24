@@ -46,8 +46,8 @@ function Product() {
             src={truck}
             className="h-36 w-36"
           />
-          <h3 className="mt-2 text-lg font-semibold text-primary">Free Shipping</h3>
-          <p className="text-muted-foreground">Free Shipping World Wide</p>
+          <h3 className="mt-2 text-lg font-semibold text-primary">Free Shopping</h3>
+          <p className="text-muted-foreground">Free Shopping World Wide</p>
         </div>
         <div class="flex flex-col items-center text-center ">
           <img
@@ -73,7 +73,7 @@ function Product() {
           </h3>
           <p className="text-muted-foreground">New Online Special Festival Offer</p>
         </div>
-        <div class="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center">
           <img
             aria-hidden="true"
             alt="service"

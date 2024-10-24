@@ -3,13 +3,6 @@ const router=express.Router()
 const productmodel = require("../schema/productschema");
 
 
-router.get("/product/login",(req,res)=>{
-  // console.log("hi")
-  res.redirect("/product/login")
-})
-router.post("/product/login",(req,res)=>{
-  console.log("hi")
-})
 router.get('/products/:id', async (req, res) => {
   try {
     const id = req.params.id;
@@ -21,6 +14,9 @@ router.get('/products/:id', async (req, res) => {
     res.status(500).json({ err: 'Internal server error' });
   }
 });
+
+
+
 router.post("/product", async (req, res) => {
     try {
       const data = req.body;
