@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import axios from "axios";
 import { useLocation,useNavigate } from "react-router-dom";
 
-function Shirts() {
+function Trackpants() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Shirts() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("/product/Shirt");
+      const response = await axios.get("/product/Pants");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
@@ -58,4 +58,4 @@ function Shirts() {
   );
 }
 
-export default Shirts
+export default Trackpants

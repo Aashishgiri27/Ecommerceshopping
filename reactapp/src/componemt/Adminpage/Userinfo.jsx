@@ -4,7 +4,7 @@ import  { useState, useEffect } from "react";
 
 import axios from "axios";
 
-function Adminproduct() {
+function    Userinfo() {
   const [data, setData] = useState([]);
   useEffect(() => {
     getData();
@@ -12,7 +12,7 @@ function Adminproduct() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("/product");
+      const response = await axios.get("/product/login");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
@@ -36,10 +36,9 @@ function Adminproduct() {
       <tr>
         <th class="py-2 px-4 border-b border-border">Image</th>
         <th class="py-2 px-4 border-b border-border">Name</th>
-        <th class="py-2 px-4 border-b border-border">Price</th>
+        <th class="py-2 px-4 border-b border-border">Email ID</th>
         <th class="py-2 px-4 border-b border-border">Status</th>
-        <th class="py-2 px-4 border-b border-border">Category</th>
-        <th class="py-2 px-4 border-b border-border">Option</th>
+        <th class="py-2 px-4 border-b border-border">Username</th>
       </tr>
     </thead>
 
@@ -47,14 +46,11 @@ function Adminproduct() {
     {data.map((item, index) => (
       <tr key={index} >
         <td class="h-6 w-6 py-2 px-4 border-b border-border"><img  src={item.img} alt={item.name}/></td>
-        <td class="py-2 px-4 border-b border-border">{item.name} </td>
-        <td class="py-2 px-4 border-b border-border">{item.price}</td>
-        <td class="py-2 px-4 border-b border-border"><span class="bg-success text-success-foreground px-2 py-1 rounded">Success</span></td>
-        <td class="py-2 px-4 border-b border-border">{item.color}</td>
-        <td class="py-2 px-4 border-b border-border">
-          <button class="h-6 mr-2 text-white w-10 bg-blue-600">Edit</button>
-          <button class="h-6 w-14 bg-red-700 text-white">Delete</button>
-        </td>
+        <td class="py-2 px-4 border-b border-border">{item.Firstname} </td>
+        <td class="py-2 px-4 border-b border-border">{item.Email}</td>
+        <td class="py-2 px-4 border-b border-border"><span class="bg-success text-success-foreground px-2 py-1 rounded">Active</span></td>
+        <td class="py-2 px-4 border-b border-border">{item.Username}</td>
+
       </tr>
         ))}
     
@@ -67,4 +63,4 @@ function Adminproduct() {
   )
 }
 
-export default Adminproduct
+export default Userinfo

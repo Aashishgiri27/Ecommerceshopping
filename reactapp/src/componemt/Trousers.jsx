@@ -1,12 +1,11 @@
-// import React from 'react'
 import React ,{ useState, useEffect } from "react";
 import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
-
-import axios from "axios";
 import { useLocation,useNavigate } from "react-router-dom";
 
-function Shirts() {
+import axios from "axios";
+
+function Trousers() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -15,13 +14,12 @@ function Shirts() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("/product/Shirt");
+      const response = await axios.get("/product/Trousers");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
     }
   };
-
   const navigate = useNavigate();
   const location=useLocation();
   const handleBuyNowClick = (itemId) => {
@@ -37,7 +35,7 @@ function Shirts() {
      <Navigationbar />
      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 p-6 w-11/12 m-auto">
       {data.map((item, index) => (
-        <div className="bg-card p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 " key={index} onClick={() => handleBuyNowClick(item._id)}>
+        <div className="bg-card p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 " key={index}  onClick={() => handleBuyNowClick(item._id)}>
           <img
             src={item.img}
             alt={item.name}
@@ -49,13 +47,14 @@ function Shirts() {
             <span className="text-lg font-bold text-accent">₹{item.price}</span>
             <span className="text-yellow-500">★★★★☆</span>
           </div>
-
+          
         </div>
          ))}
       </div>
       <Footer/>
-    </>
+     
+  </>
   );
 }
 
-export default Shirts
+export default Trousers

@@ -27,7 +27,11 @@ function Signin() {
     try {
       const response = await axios.post("/product/signin", userdata);
       // console.log(response)
+      setTimeout(() => {
+        navigate("/product/login"); 
+            }, 1000);
       alert("welcome to friend's collection ");
+
     } catch (err) {
       console.log("internal error", err);
     }
@@ -36,16 +40,17 @@ function Signin() {
   return (
     <>
       <Navigationbar />
+      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
 
-      <div className="my-12">
-        <p className="text-center text-2xl text-bold my-8"> SIGN IN</p>
+      <div className="max-w-md w-full bg-white p-6 shadow-md rounded">
+        <p className="text-center text-3xl font-bold my-4"> SIGN UP</p>
           <div className="  w-96  mx-auto my-auto flex flex-col  ">
               <input
               className="h-12  border border-black mb-5 pl-5"
                 type="text"
                 name="Firstname"
                 id=""
-                placeholder="Name"
+                placeholder="Name" 
                 onChange={handelinput}
               />
             
@@ -94,10 +99,11 @@ function Signin() {
         
             <div className="text-center">
               <button className="text-xl h-10 w-24 bg-blue-600 rounded-md" type="submit" onClick={submit}>
-                SignIn
+                SignUP
               </button>
             </div>
           </div>
+        </div>
         </div>
      <Footer/>
     </>

@@ -14,7 +14,7 @@ function Gens() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("/product/gens");
+      const response = await axios.get("/product/Jeans");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
@@ -47,9 +47,7 @@ function Gens() {
             <span className="text-lg font-bold text-accent">₹{item.price}</span>
             <span className="text-yellow-500">★★★★☆</span>
           </div>
-          <span className="line-through text-sm text-muted-foreground">
-          ₹120
-          </span>
+          
         </div>
          ))}
       </div>

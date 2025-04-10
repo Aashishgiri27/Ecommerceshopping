@@ -5,6 +5,8 @@ const productmodel = require("./schema/productschema");
 const LocalStrategy=require("passport-local").Strategy;
 const usermodel=require("./schema/userschema")
 const core= require("cors")
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const db = require("./db");
 const bodyparser = require("body-parser");

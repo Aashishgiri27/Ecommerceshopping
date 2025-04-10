@@ -4,12 +4,16 @@ import axios from "axios";
 import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
 import Reviws from "./Reviws";
+import { useContext } from "react";
+import { CartContext } from "../CartContext";
+
 function Detail() {
   const { id } = useParams();
   // console.log(id);
   const [product, setProduct] = useState(null);
   const navigate=useNavigate()
 
+  const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -33,10 +37,13 @@ function Detail() {
   }
 
   
-  const addtocart =()=>{
-     navigate("/product/login")
-  }
-  
+  // const addtocart =()=>{
+  //    navigate("/product/login")
+  // }
+  const handleAddToCart = () => {
+    addToCart(product);
+    navigate("/cart");
+  };
 
   return (
     <div>
@@ -74,9 +81,9 @@ function Detail() {
             <span className="text-yellow-500">★★★★★</span>
             <span className="text-muted-foreground ml-2">(0 Reviews)</span>
           </div>
-          <p className="mt-4 text-muted-foreground">
-            PLENTY OF STORAGE: There are two chest pockets on this women’s
-            hooded flannel, making it easy to bri...{" "}
+          <p className="mt-4 text-muted-foreground">{product.description}
+            {/* PLENTY OF STORAGE: There are two chest pockets on this women’s */}
+            {/* hooded flannel, making it easy to bri...{" "} */}
             <a href="#" className="text-primary">
               See more
             </a>
@@ -113,7 +120,7 @@ function Detail() {
           </div>
           <div className="mt-6">
             
-            <button className="bg-primary bg-slate-700 text-primary-foreground p-3 rounded-lg w-full" onClick={addtocart}>
+            <button className="bg-primary bg-slate-700 text-primary-foreground p-3 rounded-lg w-full" onClick={handleAddToCart}>
               Add To Cart
             </button>
             <button className="bg-accent bg-blue-600 text-accent-foreground p-3 rounded-lg w-full mt-2">

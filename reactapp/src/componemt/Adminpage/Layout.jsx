@@ -22,8 +22,12 @@ const navitem = [
   },
   {
     label:"Users",
-    href:"/admin/user"
+    href:"/admin/Users"
+  },{
+    label:"Messages",
+    href:"/admin/messages"
   }
+
 ];
 
 function Layout({ children }) {
@@ -40,11 +44,11 @@ function Layout({ children }) {
                 to={item.href}
                 className="adminheaderitem"
                 style={{
-                  backgroundColor: location.pathname === item.href ? 'red' : 'transparent',
+                  backgroundColor: location.pathname === item.href ? '#B3E5FC' : 'transparent',
                   color: location.pathname === item.href ? 'white' : 'black', 
                   borderBottom: location.pathname === item.href ? '2px solid white' : ' transparent', 
                   borderTop: location.pathname === item.href ? '2px solid white' : ' transparent',
-                  boxShadow: location.pathname === item.href ? 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px' : ' transparent',
+                  // boxShadow: location.pathname === item.href ? 'rgba((43, 44, 170,1) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px' : ' transparent',
      // Add color change
                   // Add color change
                   // Add color change
@@ -60,7 +64,7 @@ function Layout({ children }) {
           <div className="adminheader">
             <p>FRIEND'S COLLECTION</p>
           </div>
-          <div>{children}</div>
+          <div className="bg-[#F5F7FA]">{children}</div>
         </section>
       </div>
     </>

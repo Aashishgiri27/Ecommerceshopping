@@ -110,9 +110,7 @@ function Product() {
               </span>
               <span className="text-yellow-500">★★★★☆</span>
             </div>
-            <span className="line-through text-sm text-muted-foreground">
-              ₹ 120
-            </span>
+          
           </div>
         ))}
       </div>

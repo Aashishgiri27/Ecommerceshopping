@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const productschema=mongoose.Schema({
     name:{
         type:String,
-        // enum:["Shirt","t-Shirt","gens"],
+        // enum:["Shirt","t-Shirt","gens","Pants"],
         required:true
     },
     price:{
@@ -21,6 +21,10 @@ const productschema=mongoose.Schema({
         required:true
     },
     img:{
+        type:String,
+        required:true
+    },
+    description:{
         type:String,
         required:true
     }

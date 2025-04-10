@@ -1,55 +1,93 @@
-// import  { useState } from "react";
+import { useState } from "react";
 import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
-
 import axios from "axios";
-
-import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [data,setdata]=useState({
-    Email:"",
-    Password:""
-  })
-  function inputdata(e){
-   setdata({
-    ...data,
-    [e.target.name]:e.target.value
-   });
-  }
-  async function submit(e){
-  e.preventDefault();
-  console.log(data)
-  try{
-    const response = await axios.post("/product/login", data);
-      console.log(response)
-      alert("Login succesfully ");
-   
-  }catch (err) {
-    console.log("internal error", err);
-  }
- }
+  const [data, setData] = useState({
+    Email: "",
+    Password: ""
+  });
+
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
+  const inputData = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+
+    if (!data.Email || !data.Password) {
+      setMessage("Please enter both Email and Password.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("  /product/login", data); // add full URL if needed
+      console.log("Response:", response.data);
+      setMessage("Login successful ✅");
+      localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", response.data.user.id);
+      // Redirect user after login (optional)
+      setTimeout(() => {
+        navigate("/"); // or your home/products page
+      }, 1000);
+    } catch (err) {
+      console.error("Login error:", err);
+      setMessage("Invalid credentials or server error ❌");
+    }
+  };
 
   return (
     <>
       <Navigationbar />
 
-      <div className=" h-96 mx-auto  flex flex-col justify-center items-center  shadow-slate-500" >
-        <h1 className="text-center text-2xl text-black mb-14">LOG-IN</h1>
-        <input type="text" name="Email" id=""placeholder="Email" className=" w-96 h-12 mb-5 border-black  pl-5 rounded-lg border-2" onChange={inputdata}/>
+      <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white p-8 shadow-md rounded">
+          <h2 className="text-center text-3xl font-bold mb-8 text-gray-900">Log in to your account</h2>
 
-        <input type="password" name="Password" placeholder="Password" className="w-96 h-12 pl-5 border-black rounded-lg border-2" onChange={inputdata}/>
+          <form onSubmit={submit} className="space-y-6">
+            <input
+              type="email"
+              name="Email"
+              placeholder="Email"
+              className="w-full h-12 border-2 border-gray-300 rounded px-4"
+              onChange={inputData}
+              value={data.Email}
+              required
+            />
 
-        <div className="w-full h-10 mt-10  flex flex-row justify-center items-center ">
-          <button
-            className="bg-cyan-500 shadow-lg mb-5 shadow-cyan-500/50 w-20 h-10"
-            type="submit"
-            onClick={submit}
-          >
-            Login
-          </button>
+            <input
+              type="password"
+              name="Password"
+              placeholder="Password"
+              className="w-full h-12 border-2 border-gray-300 rounded px-4"
+              onChange={inputData}
+              value={data.Password}
+              required
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-cyan-600 text-white py-2 rounded hover:bg-cyan-700 transition"
+            >
+              Login
+            </button>
+          </form>
+
+          {message && (
+            <p className="text-center mt-4 text-sm text-red-600">{message}</p>
+          )}
         </div>
       </div>
+
       <Footer />
     </>
   );

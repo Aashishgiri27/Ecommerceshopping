@@ -33,19 +33,19 @@ const item=[
   },
   {
      label:"Track Pants",
-    href:""
+    href:"/product/Pants"
   },
   {
      label:"Jeans",
-    href:"/product/gens"
+    href:"/product/jeans"
   },
   {
      label:"Trousers",
-    href:""
+    href:"/product/Trousers"
   },
   {
     label:"Accessories",
-   href:""
+   href:"/product/Accessories"
  }
 
 ]
@@ -54,9 +54,9 @@ function Navigationbar() {
   return (
     <div>
     <div className=" h-16 w-100% mx-auto flex flex-row justify-evenly">
-      <h1 className="text-2xl">FRIEND'S COLLECTION</h1>
+      <h1 className="text-3xl font-serif">FRIEND'S COLLECTION</h1>
       <div className="flex flex-row  ">
-        <div className="content-center"><input type="text" placeholder="search by name" className=" border-2 border-black h-10 w-80 " /></div>
+        {/* <div className="content-center"><input type="text" placeholder="search by name" className=" border-2 border-black h-10 w-80 " /></div> */}
         {navitem.map((item, index) => (
           <div key={index} className="w-36 content-center text-center">
             <Link to={item.href} className="">
@@ -66,7 +66,7 @@ function Navigationbar() {
         ))}
         {/* <input type="text" /> */}
         <Link to="/product/login" className="w-36 content-center text-center">Login</Link>
-        <Link to="/product/signin" className="w-32  content-center text-center rounded-lg text-white bg-blue-700 ">Sign-In</Link>
+        <Link to="/product/signin" className="w-32  content-center text-center rounded-lg text-white bg-blue-700 ">Sign-Up</Link>
       </div>
     </div>
     <div className=" h-12 flex flex-row border-t-2 border-b-2 border-black " >
