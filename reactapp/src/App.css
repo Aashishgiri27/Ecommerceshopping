@@ -3,3 +3,23 @@
     padding: 0px;
     /* background-color: black; */
 }
+.primary-color{
+    color : #001f54;
+}
+.primary-background-color{
+    background-color :  #01497c;
+    color:white !important;
+
+}
+
+/* .white-color{
+    color:white !important;
+} */
+
+.secondary-color{
+    color : #eec643;
+}
+.secondary-background-color{
+    background-color :  #eec643;
+    color: white;
+}

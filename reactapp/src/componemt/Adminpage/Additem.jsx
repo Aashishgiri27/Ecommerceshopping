@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../adminpagecss/form.css";
 import axios from "axios";
 import Layout from "./Layout";
+const baseUrl = 'http://127.0.0.1:3000'
 
 function Form({ additem }) {
   const [itemdata, setitemdata] = useState({
@@ -27,7 +28,7 @@ function Form({ additem }) {
 
     try {
       console.log(itemdata)
-      const response = await axios.post("/product", itemdata);
+      const response = await axios.post(baseUrl +"/api/product/product", itemdata);
       console.log(response);
       alert("Item is added Sucessfully");
     } catch (err) {

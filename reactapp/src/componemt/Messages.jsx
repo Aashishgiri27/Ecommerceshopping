@@ -10,8 +10,9 @@ import Footer from "./Footer";
 import facebook from "../images/facebook.png";
 import twitter from "../images/twitter.png";
 import instagram from "../images/instagram.png";
+const baseUrl = 'http://127.0.0.1:3000'
 
-function Contact() {
+function Messages() {
     const [userquery, setuserquery] = useState({
       Name: "",
       Email: "",
@@ -28,8 +29,8 @@ function Contact() {
       e.preventDefault();
       // console.log(userquery);
       try {
-        const response = await axios.post("/product/contact", userquery);
-        // console.log(response)
+        const response = await axios.post(baseUrl + "/api/users/product/messages", userquery);
+        console.log(response)
         alert("Message Saved ");
       } catch (err) {
         console.log("internal error", err);
@@ -155,4 +156,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default Messages;

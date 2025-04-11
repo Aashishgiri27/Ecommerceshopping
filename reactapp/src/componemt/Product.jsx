@@ -11,7 +11,7 @@ import festival from "../images/festival.gif";
 
 import Footer from "./Footer";
 import Reviws from "./Reviws";
-
+const baseUrl = 'http://127.0.0.1:3000'
 function Product() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ function Product() {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 p-6 w-10/12 m-auto">
-        {data.map((item, index) => (
+        {[...data].reverse().map((item, index) => (
           <div
           
             className="bg-card p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 "

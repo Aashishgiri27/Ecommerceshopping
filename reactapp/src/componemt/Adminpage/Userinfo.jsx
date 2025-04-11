@@ -3,7 +3,7 @@ import Layout from './Layout'
 import  { useState, useEffect } from "react";
 
 import axios from "axios";
-
+const baseUrl = 'http://127.0.0.1:3000'
 function    Userinfo() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -21,18 +21,18 @@ function    Userinfo() {
   return (
     <>
       <Layout>
-      <div class="flex flex-col p-4 bg-background text-foreground">
+      {/* <div class="flex flex-col p-4 bg-background text-foreground">
   <div class="flex justify-between items-center mb-4">
     <h1 class="text-xl font-bold">CATEGORY</h1>
     <button class="bg-accent text-accent-foreground px-4 py-2 rounded">ADD CATEGORY</button>
   </div>
   <div class="relative mb-4">
     <input type="text" placeholder="Search..." class="border border-border rounded-lg p-2 w-full" />
-  </div>
-  <div className="max-h-96 overflow-y-scroll block">
+  </div> */}
+  <div className="max-h-96 overflow-y-scroll block p-20">
 
   <table class=" bg-card border border-border">
-    <thead className='bg-blue-600'>
+    <thead className='bg-[#7d8597] text-white h-14'>
       <tr>
         <th class="py-2 px-4 border-b border-border">Image</th>
         <th class="py-2 px-4 border-b border-border">Name</th>
@@ -43,7 +43,7 @@ function    Userinfo() {
     </thead>
 
     <tbody>
-    {data.map((item, index) => (
+    {[...data].reverse().map((item, index) => (
       <tr key={index} >
         <td class="h-6 w-6 py-2 px-4 border-b border-border"><img  src={item.img} alt={item.name}/></td>
         <td class="py-2 px-4 border-b border-border">{item.Firstname} </td>
@@ -57,7 +57,7 @@ function    Userinfo() {
     </tbody>
   </table>
   </div>
-</div>
+{/* </div> */}
       </Layout>
     </>
   )

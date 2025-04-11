@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import Reviws from "./Reviws";
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
-
+const baseUrl = 'http://127.0.0.1:3000'
 function Detail() {
   const { id } = useParams();
   // console.log(id);
@@ -18,7 +18,7 @@ function Detail() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`/products/${id}`);
+        const response = await axios.get(baseUrl +`/api/product/products/${id}`);
 
         console.log(`in  ${id}`);
 
@@ -41,9 +41,16 @@ function Detail() {
   //    navigate("/product/login")
   // }
   const handleAddToCart = () => {
-    addToCart(product);
-    navigate("/cart");
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      navigate("/product/login");
+    } else {
+      addToCart(product);
+      // navigate("/cart");
+      
+    }
   };
+  
 
   return (
     <div>

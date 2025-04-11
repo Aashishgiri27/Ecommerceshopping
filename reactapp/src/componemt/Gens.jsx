@@ -2,7 +2,7 @@ import React ,{ useState, useEffect } from "react";
 import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
 import { useLocation,useNavigate } from "react-router-dom";
-
+const baseUrl = 'http://127.0.0.1:3000'
 import axios from "axios";
 
 function Gens() {
@@ -14,7 +14,7 @@ function Gens() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("/product/Jeans");
+      const response = await axios.get(baseUrl +"/api/product/product/Jeans");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);

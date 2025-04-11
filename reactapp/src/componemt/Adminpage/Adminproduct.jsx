@@ -31,8 +31,8 @@ function Adminproduct() {
   </div>
   <div className="max-h-96 overflow-y-scroll block">
 
-  <table class=" bg-card border border-border">
-    <thead className='bg-blue-600'>
+  <table className="bg-white shadow-lg rounded-lg overflow-hidden w-full">
+            <thead className="bg-[#7d8597] text-white">
       <tr>
         <th class="py-2 px-4 border-b border-border">Image</th>
         <th class="py-2 px-4 border-b border-border">Name</th>
@@ -44,7 +44,7 @@ function Adminproduct() {
     </thead>
 
     <tbody>
-    {data.map((item, index) => (
+    {[...data].reverse().map((item, index) => (
       <tr key={index} >
         <td class="h-6 w-6 py-2 px-4 border-b border-border"><img  src={item.img} alt={item.name}/></td>
         <td class="py-2 px-4 border-b border-border">{item.name} </td>

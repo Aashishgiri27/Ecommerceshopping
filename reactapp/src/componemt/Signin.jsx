@@ -4,6 +4,7 @@ import Navigationbar from "./Navigationbar";
 
 import axios from "axios";
 import Footer from "./Footer";
+const baseUrl = 'http://127.0.0.1:3000'
 
 // import "../css/signin.css";
 // import "../css/product.css";
@@ -25,7 +26,7 @@ function Signin() {
     e.preventDefault();
     console.log(userdata);
     try {
-      const response = await axios.post("/product/signin", userdata);
+      const response = await axios.post(baseUrl +"/api/users/product/signin", userdata);
       // console.log(response)
       setTimeout(() => {
         navigate("/product/login"); 

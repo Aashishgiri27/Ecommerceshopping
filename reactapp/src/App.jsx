@@ -17,12 +17,13 @@ import Adminproduct from "./componemt/Adminpage/Adminproduct";
 import Adminorder from "./componemt/Adminpage/Adminorder"
 import Additem from "./componemt/Adminpage/Additem";
 import Detail from "./componemt/Detail";
-import Contact from "./componemt/Contact";
+import Messages from "./componemt/Messages";
 import Userinfo from "./componemt/Adminpage/Userinfo";
 import Trackpants from "./componemt/Trackpants";
 import Trousers from "./componemt/Trousers";
 import Accessories from "./componemt/Accessories";
 import { CartProvider } from "./CartContext";
+import Adminmessage from "./componemt/Adminpage/Adminmessage";
 function App() {
   return (
     <div>
@@ -34,13 +35,14 @@ function App() {
           <Route path="order" element={<Adminorder/>}></Route>
           <Route path="additem" element={<Additem/>}></Route>
           <Route path="Users" element={<Userinfo/>}></Route>
+          <Route path="messages" element={<Adminmessage/>}></Route>
           
         </Route>
         <Route path="/" element={<Product />}></Route>
         <Route path="/product/:id" element={<Detail/>} ></Route>
         <Route path="/:product/:name/:id" element={<Detail/>} ></Route>
         <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/Messages" element={<Messages />}></Route>
         <Route path="/product/shirt" element={<Shirts />}></Route>
         <Route path="/product/tshirt" element={<TShirts />}></Route>
         <Route path="/product/Pants" element={<Trackpants />}></Route>

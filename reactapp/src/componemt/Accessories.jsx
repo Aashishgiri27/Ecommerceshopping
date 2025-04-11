@@ -2,7 +2,7 @@ import React ,{ useState, useEffect } from "react";
 import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
 import { useLocation,useNavigate } from "react-router-dom";
-
+const baseUrl = 'http://127.0.0.1:3000'
 import axios from "axios";
 
 function Accessories() {
@@ -14,7 +14,7 @@ function Accessories() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("/product/Accessories");
+      const response = await axios.get(baseUrl +"/api/product/product/Accessories");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
@@ -34,7 +34,7 @@ function Accessories() {
     <>
      <Navigationbar />
      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 p-6 w-11/12 m-auto">
-      {data.map((item, index) => (
+     {[...data].reverse().map((item, index) => (
         <div className="bg-card p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 " key={index}  onClick={() => handleBuyNowClick(item._id)}>
           <img
             src={item.img}

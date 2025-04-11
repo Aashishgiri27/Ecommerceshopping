@@ -3,7 +3,7 @@ import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+const baseUrl = 'http://127.0.0.1:3000'
 function Login() {
   const [data, setData] = useState({
     Email: "",
@@ -11,7 +11,7 @@ function Login() {
   });
 
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const inputData = (e) => {
     setData({
@@ -29,15 +29,20 @@ function Login() {
     }
 
     try {
-      const response = await axios.post("  /product/login", data); // add full URL if needed
-      console.log("Response:", response.data);
+      const response = await axios.post(baseUrl +"/api/users/product/login", data); // make sure baseURL is set in axios config if you're omitting domain
+      const { token, user } = response.data;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("userId", user.id);
+
       setMessage("Login successful ✅");
-      localStorage.setItem("token", response.data.token);
-      // localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", response.data.user.id);
-      // Redirect user after login (optional)
+
+      // setTimeout(() => {
+      //   navigate("/"); // redirect after login
+      // }, 1000);
+
       setTimeout(() => {
-        navigate("/"); // or your home/products page
+        window.location.href = "/"; // 👈 forces full page reload, which re-runs useEffect
       }, 1000);
     } catch (err) {
       console.error("Login error:", err);
@@ -51,7 +56,9 @@ function Login() {
 
       <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full bg-white p-8 shadow-md rounded">
-          <h2 className="text-center text-3xl font-bold mb-8 text-gray-900">Log in to your account</h2>
+          <h2 className="text-center text-3xl font-bold mb-8 text-gray-900">
+            Log in to your account
+          </h2>
 
           <form onSubmit={submit} className="space-y-6">
             <input
