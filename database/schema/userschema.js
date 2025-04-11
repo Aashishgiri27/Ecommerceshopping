@@ -1,3 +1,4 @@
+// schema/userschema.js
 const mongoose = require("mongoose");
 
 const userschema = mongoose.Schema({
@@ -22,26 +23,10 @@ const userschema = mongoose.Schema({
   Mobileno: {
     type: Number,
     required: true
-  },
-  cart: [
-    {
-      product: { type: mongoose.Schema.Types.ObjectId, ref: "Products" },
-      quantity: { type: Number, default: 1 }
-    }
-  ]
-},{
-  timestamps:true,
-}
-);
+  }
+}, {
+  timestamps: true
+});
 
 const usermodel = mongoose.model("User", userschema);
 module.exports = usermodel;
-
-
-
-
-
-
-
-
-  

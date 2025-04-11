@@ -8,7 +8,6 @@ const userquery=mongoose.Schema({
     Email:{
         type:String,
         required:true,
-        unique:true
     },
     Subject:{
         type:String,
@@ -17,7 +16,6 @@ const userquery=mongoose.Schema({
     Message:{
         type:String,
         required:true,
-        unique:true
    },
 
 },{   timestamps:true,

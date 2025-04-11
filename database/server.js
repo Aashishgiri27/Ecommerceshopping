@@ -58,10 +58,12 @@ app.get("/product", async (req, res) => {
 
  
 const Productroutes=require('./routes/Productroutes')
-app.use('/',Productroutes)
+app.use('/api/product',Productroutes)
+const cartRoutes = require("./routes/Cartroutes"); // or your file path
+app.use("/api/cart", cartRoutes); // adjust prefix as needed
 
 const Userroutes=require('./routes/Userroutes')
-app.use('/',Userroutes)
+app.use('/api/users',Userroutes)
 app.listen(3000,() =>{
   console.log( `server running in  port http://localhost:3000`);
 });

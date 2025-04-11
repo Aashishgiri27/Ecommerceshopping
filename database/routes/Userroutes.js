@@ -1,5 +1,5 @@
 const express = require("express");
-const router=express.Router()
+const router = express.Router()
 const usermodel = require("../schema/userschema");
 const userquerymodel = require("../schema/contactschema");
 const jwt = require("jsonwebtoken");
@@ -50,7 +50,7 @@ router.post("/product/signin", async (req, res) => {
   }
 });
 
-  
+
 router.post("/product/login", async (req, res) => {
   try {
     const { Email, Password } = req.body;
@@ -92,32 +92,44 @@ router.post("/product/login", async (req, res) => {
   }
 });
 
-  // router.get("/product/login",async(req,res)=>{
-  //   try{
-  //     let data= await usermodel.find();
-  //     console.log(data)
-  //     res.status(200).json(data)
-  //   }catch(error){
-  //     console.log("error", error);
-  //     res.status(500).json({ error: "soory you are not login" });
-  //   }  
-  // });
-  
-
-  router.post("/product/contact", async (req, res) => {
-    try {
-      const data = req.body;
-      const user = new userquerymodel(data);
-      const response = await user.save();
-      res.status(200).json(response);
-    } catch (error) {
-      console.log("error", error);
-      res.status(500).json({ error: "internal server error" });
-    }
-  });   
+// router.get("/product/login",async(req,res)=>{
+//   try{
+//     let data= await usermodel.find();
+//     console.log(data)
+//     res.status(200).json(data)
+//   }catch(error){
+//     console.log("error", error);
+//     res.status(500).json({ error: "soory you are not login" });
+//   }  
+// });
 
 
+router.post("/product/messages", async (req, res) => {
+  try {
+    const data = req.body;
+    console.log("Incoming contact message:", data); // 👈 Add this
+    const user = new userquerymodel(data);
+    const response = await user.save();
+    res.status(200).json(response);
+  } catch (error) {
+    console.log("error", error);
+    res.status(500).json({ error: "internal server error" });
+  }
+});
+
+router.get('/product/messages/', async (req, res) => {
+  console.log("hello")
+  try {
+    const data = await userquerymodel.find();
+    console.log("Fetched contact messages:", data);
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 
-  module.exports=router
+
+module.exports = router
 
