@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate,useLocation  } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../css/navigationbar.css";
 import "../App.css";
 import toast from 'react-hot-toast';
+import { FaSearch, FaUserCircle } from "react-icons/fa"; // Profile & search icons
+import logo from '../assets/logo.png'; // 👈 make sure this path is correct
+
 const navitem = [
   { label: "HOME", href: "/" },
   { label: "CONTACT", href: "/Messages" },
@@ -20,56 +23,99 @@ const productItems = [
 
 function Navigationbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token); // true if token exists
+    setIsLoggedIn(!!token);
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     setIsLoggedIn(false);
+    toast.success("Logout Successfully ");
     setTimeout(() => {
-      window.location.href = "/"; // 👈 forces full page reload, which re-runs useEffect
+      window.location.href = "/";
     }, 1000);
-    toast.success("Logout Successfully ")
-    navigate("/"); // redirect after logout
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log(search)
+    // if (search.trim() !== "") {
+      
+    //   navigate(`/search?query=${search}`);
+    // }
   };
 
   return (
     <div>
       {/* Top Nav */}
-      <div className="h-16 w-full mx-auto flex flex-row justify-evenly items-center primary-background-color ">
-        <h1 className="text-3xl font-serif">FRIEND'S COLLECTION</h1>
-        <div className="flex flex-row gap-4 items-center">
+      <div className="h-16 w-full px-6 flex justify-between items-center primary-background-color shadow-md">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <img src={logo} alt="logo" className="w-14 h-14 rounded-full" />
+          <h1 className="text-2xl font-bold font-serif text-white">FRIEND'S COLLECTION</h1>
+        </div>
+
+        {/* Search Bar */}
+        <form onSubmit={handleSearch} className="flex items-center bg-white text-black rounded-lg overflow-hidden">
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="px-4 py-1 w-64 outline-none"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button type="submit" className=" text-black px-3">
+            <FaSearch />
+          </button>
+        </form>
+
+        {/* Navigation & Auth Buttons */}
+        <div className="flex items-center gap-4">
           {navitem.map((item, index) => (
-            <Link key={index} to={item.href}  className={`w-24 py-1 rounded-xl text-center   ${
-              location.pathname === item.href ? "bg-blue-600 text-white" : ""
-            }`}>
+            <Link
+              key={index}
+              to={item.href}
+              className={`px-3 py-1 rounded-xl text-white ${
+                location.pathname === item.href ? "bg-blue-700" : "hover:bg-blue-500"
+              }`}
+            >
               {item.label}
             </Link>
           ))}
 
           {!isLoggedIn ? (
             <>
-              <Link to="/product/login" className={`w-24 text-center py-1 rounded-xl  ${ location.pathname === "/product/login" ? "bg-blue-600 text-white" : ""
-            }`}>Login</Link>
+              <Link
+                to="/product/login"
+                className={`px-3 py-1 rounded-xl text-white ${location.pathname === "/product/login" ? "bg-blue-700" : "bg-blue-600"}`}
+              >
+                Login
+              </Link>
               <Link
                 to="/product/signin"
-                className="w-24 text-center rounded-lg text-white bg-blue-800 py-1 px-2"
+                className="px-3 py-1 rounded-xl bg-blue-800 text-white"
               >
                 Sign-Up
               </Link>
             </>
           ) : (
-            <button
-              onClick={handleLogout}
-              className="w-24 text-center text-white bg-red-500 rounded-lg py-1 px-2"
-            >
-              Logout
-            </button>
+            <>
+              <Link to="/profile" className="text-white text-2xl">
+                <FaUserCircle />
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-1 bg-red-500 text-white rounded-xl"
+              >
+                Logout
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -90,6 +136,7 @@ function Navigationbar() {
           </div>
         ))}
       </div>
+      
     </div>
   );
 }
