@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import Navigationbar from "./Navigationbar";
-
+import { Link, useNavigate,useLocation  } from "react-router-dom";
+import toast from 'react-hot-toast';
 import axios from "axios";
 import Footer from "./Footer";
 const baseUrl = 'http://127.0.0.1:3000'
@@ -16,6 +17,7 @@ function Signin() {
     Username: "",
     Mobileno: "",
   });
+  const navigate = useNavigate();
   function handelinput(e) {
     setuserdata({
       ...userdata,
@@ -27,14 +29,19 @@ function Signin() {
     console.log(userdata);
     try {
       const response = await axios.post(baseUrl +"/api/users/product/signin", userdata);
-      // console.log(response)
+      console.log(response)
+      // const { token, user } = response.data.userdata;
+      
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userId", response.data.user.id);
       setTimeout(() => {
-        navigate("/product/login"); 
-            }, 1000);
-      alert("welcome to friend's collection ");
+        navigate("/"); 
+            }, 2000);
+      toast.success(response.data.message)
+      toast.success("welcome to friend's collection 🙏");
 
     } catch (err) {
-      console.log("internal error", err);
+      toast.error(err);
     }
   };
 
@@ -53,6 +60,7 @@ function Signin() {
                 id=""
                 placeholder="Name" 
                 onChange={handelinput}
+                required
               />
             
            
@@ -64,6 +72,7 @@ function Signin() {
                 id=""
                 placeholder="Email"
                 onChange={handelinput}
+                required
               />
             
             
@@ -75,6 +84,7 @@ function Signin() {
                 id=""
                 placeholder="Password"
                 onChange={handelinput}
+                required
               />
            
 
@@ -86,6 +96,7 @@ function Signin() {
                 id=""
                 placeholder="Username"
                 onChange={handelinput}
+                required
               />
             
         
@@ -96,6 +107,7 @@ function Signin() {
                 id=""
                 placeholder=" Mobile number"
                 onChange={handelinput}
+                required
               />
         
             <div className="text-center">

@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
       });
       console.log(response)
       setCart(response.data.cart.items);
-      alert("ADDED INTO CART")
+      toast.success("Item Added Into CART")
 // After successful removal
 
  // Updated path based on backend response
@@ -57,6 +57,7 @@ export const CartProvider = ({ children }) => {
   
       // Update cart state with the returned updated cart items
       setCart(response.data.cart.items || []);
+      toast.success("Item Removed Successfully")
     } catch (error) {
       console.error("Remove failed:", error);
     }

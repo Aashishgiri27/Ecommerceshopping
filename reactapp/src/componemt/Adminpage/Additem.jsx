@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../adminpagecss/form.css";
 import axios from "axios";
 import Layout from "./Layout";
+import toast from 'react-hot-toast';
 const baseUrl = 'http://127.0.0.1:3000'
 
 function Form({ additem }) {
@@ -30,7 +31,7 @@ function Form({ additem }) {
       console.log(itemdata)
       const response = await axios.post(baseUrl +"/api/product/product", itemdata);
       console.log(response);
-      alert("Item is added Sucessfully");
+      toast.success("Item is added Sucessfully");
     } catch (err) {
       console.log("internal error", err);
     }
@@ -61,6 +62,7 @@ function Form({ additem }) {
               class="border-2 border-black rounded-lg p-2 w-full"
               placeholder="Product Price"
               onChange={adminname}
+              required
             />
           </div>
 

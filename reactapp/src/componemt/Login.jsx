@@ -3,6 +3,7 @@ import Navigationbar from "./Navigationbar";
 import Footer from "./Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 const baseUrl = 'http://127.0.0.1:3000'
 function Login() {
   const [data, setData] = useState({
@@ -24,7 +25,7 @@ function Login() {
     e.preventDefault();
 
     if (!data.Email || !data.Password) {
-      setMessage("Please enter both Email and Password.");
+      toast.error("Please enter both Email and Password.");
       return;
     }
 
@@ -35,7 +36,7 @@ function Login() {
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user.id);
 
-      setMessage("Login successful ✅");
+      toast.success("Login successful ✅");
 
       // setTimeout(() => {
       //   navigate("/"); // redirect after login
@@ -45,8 +46,7 @@ function Login() {
         window.location.href = "/"; // 👈 forces full page reload, which re-runs useEffect
       }, 1000);
     } catch (err) {
-      console.error("Login error:", err);
-      setMessage("Invalid credentials or server error ❌");
+      toast.error("Invalid credentials ❌");
     }
   };
 
@@ -89,9 +89,6 @@ function Login() {
             </button>
           </form>
 
-          {message && (
-            <p className="text-center mt-4 text-sm text-red-600">{message}</p>
-          )}
         </div>
       </div>
 

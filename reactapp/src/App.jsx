@@ -24,10 +24,11 @@ import Trousers from "./componemt/Trousers";
 import Accessories from "./componemt/Accessories";
 import { CartProvider } from "./CartContext";
 import Adminmessage from "./componemt/Adminpage/Adminmessage";
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <div>
-      
+       <Toaster position="top-center" reverseOrder={false} />
       <CartProvider>
       <Routes>
       <Route path="/admin">

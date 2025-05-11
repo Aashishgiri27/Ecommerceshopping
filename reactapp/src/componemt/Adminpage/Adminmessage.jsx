@@ -43,7 +43,7 @@ function Adminmessage() {
     {data.length > 0 && [...data].reverse().map((item, index) => (
        
           <tr key={index} >
-            <td class=" py-2 px-4 border-b border-border">1</td>
+            <td class=" py-2 px-4 border-b border-border">{index+1}</td>
             <td class="py-2 px-4 border-b border-border">{item.Name} </td>
             <td class="py-2 px-4 border-b border-border">{item.Email}</td>
             <td class="py-2 px-4 border-b border-border">{item.Subject}</td>

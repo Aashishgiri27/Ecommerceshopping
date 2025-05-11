@@ -1,5 +1,5 @@
 import React from "react";
-
+import toast from 'react-hot-toast';
 import { useState } from "react";
 import axios from "axios";
 
@@ -31,7 +31,10 @@ function Messages() {
       try {
         const response = await axios.post(baseUrl + "/api/users/product/messages", userquery);
         console.log(response)
-        alert("Message Saved ");
+        setTimeout(()=>{
+          toast.success("Message Send");
+        },1000)
+
       } catch (err) {
         console.log("internal error", err);
       }
