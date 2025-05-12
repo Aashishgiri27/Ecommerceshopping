@@ -24,6 +24,7 @@ import Trousers from "./componemt/Trousers";
 import Accessories from "./componemt/Accessories";
 import { CartProvider } from "./CartContext";
 import Adminmessage from "./componemt/Adminpage/Adminmessage";
+import SearchResults from "./componemt/SearchResults";
 import { Toaster } from 'react-hot-toast';
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path="/product/Pants" element={<Trackpants />}></Route>
         <Route path="/product/Trousers" element={<Trousers />}></Route>
         <Route path="/product/Accessories" element={<Accessories />}></Route>
+        <Route path="/product/search/:name" element={<SearchResults />} ></Route>
 
         <Route path="/product/jeans" element={<Gens />}></Route>
         <Route path="/product/signin" element={<Signin />}></Route>

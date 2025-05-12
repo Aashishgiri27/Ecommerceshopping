@@ -1,105 +1,107 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+const baseUrl = 'http://127.0.0.1:3000';
 
 function Reviws() {
+  const [reviewData, setReviewData] = useState({
+    rating: 5,
+    review: "",
+    name: "",
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    setReviewData({ ...reviewData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try { 
+      console.log("===========>")
+      await axios.post(baseUrl + "/api/users/product/review", reviewData);
+      toast.success("Review submitted!");
+      setReviewData({ rating: 5, review: "", name: "", email: "" });
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to submit review");
+    }
+  };
+
   return (
-    <>
-      <div className="w-8/12 mx-auto my-8  p-4 bg-card text-card-foreground rounded-lg shadow-md">
-        <h2 className="text-xl font-bold mb-4">Customer reviews</h2>
-        <div className="flex items-center mb-2">
-          <span className="text-2xl font-semibold">4.5</span>
-          <span className="text-yellow-500 ml-2">★★★★★</span>
-          <span className="text-muted-foreground ml-2">(0 Reviews)</span>
-        </div>
-        <div className="mb-4">
-          <div className="flex items-center">
-            <span className="mr-2">5 Star</span>
-            <div className="flex-1 bg-zinc-200 rounded-full h-2">
-              <div className="bg-yellow-500 h-2 rounded-full"></div>
-            </div>
-            <span className="ml-2">82%</span>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">4 Star</span>
-            <div className="flex-1 bg-zinc-200 rounded-full h-2">
-              <div className="bg-yellow-500 h-2 rounded-full"></div>
-            </div>
-            <span className="ml-2">30%</span>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">3 Star</span>
-            <div className="flex-1 bg-zinc-200 rounded-full h-2">
-              <div className="bg-yellow-500 h-2 rounded-full"></div>
-            </div>
-            <span className="ml-2">15%</span>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">2 Star</span>
-            <div className="flex-1 bg-zinc-200 rounded-full h-2">
-              <div className="bg-yellow-500 h-2 rounded-full"></div>
-            </div>
-            <span className="ml-2">6%</span>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">1 Star</span>
-            <div className="flex-1 bg-zinc-200 rounded-full h-2">
-              <div
-                className="bg-yellow-500 h-2 rounded-full"
-                // style="width: 10%;"
-              ></div>
-            </div>
-            <span className="ml-2">10%</span>
-          </div>
-        </div>
+    <div className="w-11/12 md:w-8/12 mx-auto my-10 p-6 bg-white rounded-xl shadow-md border">
+      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Customer Reviews</h2>
 
-        <h3 className="text-lg font-semibold mb-2">Rating & Review</h3>
-        <p className="text-muted-foreground mb-4">No Reviews Found</p>
-        <div>
-        <h3 className="text-lg font-semibold mb-2">Review this product</h3>
-        <p className="text-muted-foreground mb-2">
-          Your email address will not be published. Required fields are marked *
-        </p>
+      <div className="space-y-3 mb-8">
+        {[{ star: 5, percent: 82 }, { star: 4, percent: 30 }, { star: 3, percent: 15 }, { star: 2, percent: 6 }, { star: 1, percent: 10 }]
+          .map(({ star, percent }) => (
+            <div key={star} className="flex items-center gap-3">
+              <span className="w-12 text-sm text-gray-700">{star} Star</span>
+              <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div className="bg-yellow-400 h-2 rounded-full" style={{ width: `${percent}%` }}></div>
+              </div>
+              <span className="text-sm text-gray-500 w-10 text-right">{percent}%</span>
+            </div>
+          ))}
+      </div>
 
-        <label className="block mb-1">Your Rating:</label>
-        <div className="mb-4">
-          <span className="text-yellow-500">★★★★★</span>
-        </div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <h3 className="text-xl font-semibold mb-1 text-gray-800">Review this Product</h3>
 
-        <label className="block mb-1">Your Review:</label>
+        <label className="block text-sm font-medium text-gray-700">Your Rating:</label>
+        <select
+          name="rating"
+          value={reviewData.rating}
+          onChange={handleChange}
+          className="border border-gray-300 rounded-md p-2 w-full"
+        >
+          {[5, 4, 3, 2, 1].map((val) => (
+            <option key={val} value={val}>{val} Star</option>
+          ))}
+        </select>
+
+        <label className="block text-sm font-medium text-gray-700">Your Review:</label>
         <textarea
-          className="w-full p-2 border border-border rounded-md mb-4"
+          name="review"
           rows="4"
           placeholder="Write your review here..."
-        ></textarea>
+          value={reviewData.review}
+          onChange={handleChange}
+          className="w-full border border-gray-300 rounded-md p-2"
+          required
+        />
 
-        <label className="block mb-1">Your Name:</label>
+        <label className="block text-sm font-medium text-gray-700">Your Name:</label>
         <input
+          name="name"
           type="text"
-          className="w-full p-2 border border-border rounded-md mb-4"
+          value={reviewData.name}
+          onChange={handleChange}
+          className="w-full border border-gray-300 rounded-md p-2"
           placeholder="Your Name"
+          required
         />
 
-        <label className="block mb-1">Your Email:</label>
+        <label className="block text-sm font-medium text-gray-700">Your Email:</label>
         <input
+          name="email"
           type="email"
-          className="w-full p-2 border border-border rounded-md mb-4"
-          placeholder="Your Email"
+          value={reviewData.email}
+          onChange={handleChange}
+          className="w-full border border-gray-300 rounded-md p-2"
+          placeholder="you@example.com"
+          required
         />
 
-        <div className="flex items-center mb-4">
-          <input type="checkbox" id="save-info" className="mr-2" />
-          <label for="save-info" className="text-muted-foreground">
-            Save my name, email, and website in this browser for the next time I
-            comment.
-          </label>
-        </div>
-
-        <button className="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg">
-          Submit
+        <button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg"
+        >
+          Submit Review
         </button>
-        </div>
-        
-      </div>
-    </>
+      </form>
+    </div>
   );
 }
 

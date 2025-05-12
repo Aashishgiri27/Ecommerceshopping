@@ -36,7 +36,7 @@ function TShirts() {
 
      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 p-6 w-11/12 m-auto">
      {[...data].reverse().map((item, index) => (
-        <div className="bg-card p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 " key={index}  onClick={() => handleBuyNowClick(item._id)}>
+        <div className="bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 " key={index}  onClick={() => handleBuyNowClick(item._id)}>
           <img
             src={item.img}
             alt={item.name}

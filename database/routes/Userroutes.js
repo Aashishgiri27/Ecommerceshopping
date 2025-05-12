@@ -4,6 +4,7 @@ const usermodel = require("../schema/userschema");
 const userquerymodel = require("../schema/contactschema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const reviewModel = require("../schema/Review");
 
 
 router.post("/product/signin", async (req, res) => {
@@ -117,7 +118,7 @@ router.post("/product/messages", async (req, res) => {
   }
 });
 
-router.get('/product/messages/', async (req, res) => {
+router.get('/product/messages', async (req, res) => {
   console.log("hello")
   try {
     const data = await userquerymodel.find();
@@ -131,5 +132,32 @@ router.get('/product/messages/', async (req, res) => {
 
 
 
+router.post("/product/review", async (req, res) => {
+  try {
+
+
+     console.log("===========>1232442")
+    const data = req.body;
+    console.log("Incoming contact message:", data);
+    const user = new reviewModel(data);
+    const response = await user.save();
+    res.status(200).json(response);
+  } catch (error) {
+    console.error("Error saving review:", error); // 👈 show full error
+    res.status(500).json({ error: error.message || "Internal server error" });
+  }
+});
+
+
+router.get('/product/review', async (req, res) => {
+  try { 
+    const data = await reviewModel.find();
+    console.log("Fetched contact messages:", data);
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 module.exports = router
 

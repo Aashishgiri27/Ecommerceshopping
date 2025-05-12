@@ -14,11 +14,12 @@ const navitem = [
 
 const productItems = [
   { label: "Shirts", href: "/product/shirt" },
+  { label: "Accessories", href: "/product/Accessories" },
   { label: "Tshirts", href: "/product/tshirt" },
   { label: "Track Pants", href: "/product/Pants" },
   { label: "Jeans", href: "/product/jeans" },
   { label: "Trousers", href: "/product/Trousers" },
-  { label: "Accessories", href: "/product/Accessories" },
+  
 ];
 
 function Navigationbar() {
@@ -42,14 +43,13 @@ function Navigationbar() {
     }, 1000);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(search)
-    // if (search.trim() !== "") {
-      
-    //   navigate(`/search?query=${search}`);
-    // }
-  };
+const handleSearch = (e) => {
+  e.preventDefault();
+
+  if (search.trim() !== "") {
+    navigate(`/product/search/${search.trim()}`);
+  }
+};
 
   return (
     <div>

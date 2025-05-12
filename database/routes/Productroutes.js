@@ -62,7 +62,22 @@ router.get("/product/:name", async (req, res) => {
     }
   });
 
- 
+ // Search products by name (case-insensitive)
+router.get("/product/search/:name", async (req, res) => {
+  try {
+    const name = req.params.name;
+    console.log("=================>")
+    const products = await productmodel.find({
+      name: { $regex: name, $options: "i" } // i = case-insensitive
+    });
+
+    res.status(200).json(products);
+  } catch (err) {
+    console.error("Search error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 
   module.exports=router

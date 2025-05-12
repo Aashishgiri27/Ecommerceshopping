@@ -42,118 +42,98 @@ function Messages() {
   return (
     <>
       <Navigationbar />
-      <div className=" w-4/5  mx-auto p-6  flex flex-col ">
-        <h1 className="text-3xl  font-bold mb-1 text-center">Sent a Message</h1>
-        <div class="bg-primary p-4 rounded-lg  text-white bg-blue-950">
-          <p>Keep In Touch with Us</p>
-        </div>
-      </div>
-      <div className="w-4/5 my-5 mx-auto p-6 bg-slate-400 text-foreground rounded-lg shadow-md flex flex-row justify-between">
-        <form className="w-1/2 pl-5" onSubmit={submit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1" for="name">
-              Your Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="Name"
-              class="border border-border rounded-lg p-2 w-full"
-              placeholder="Aashish Giri"
-              onChange={handelinput}
-            />
-          </div>
-          <div class="mb-4">
-            <label className="block text-sm font-medium mb-1" for="email">
-              Your Email
-            </label>
-            <input
-              type="email"
-              id="email"
-                name="Email"
-              className="border border-border rounded-lg p-2 w-full"
-              placeholder="friendcollection@mail.com"
-              onChange={handelinput}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1" for="subject">
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="Subject"
-              class="border border-border rounded-lg p-2 w-full"
-              placeholder="Write your subject"
-              onChange={handelinput}
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1" for="message">
-              Your Message
-            </label>
-            <textarea
-              id="message"
-              className="border border-border rounded-lg p-2 w-full"
-              rows="4"
-              name="Message"
-              placeholder="Write your message here..."
-              onChange={handelinput}
-            ></textarea>
-          </div>
-          <div className="text-center">
-            <button
-              type="submit"
-              className="bg-blue-500 text-white hover:bg-blue/80 p-2 rounded-lg w-40"
-            >
-              Send Message
-            </button>
-          </div>
-        </form>
+     <div className="w-11/12 mx-auto my-10 p-6 bg-gradient-to-r from-blue-600 to-indigo-400 text-white rounded-xl shadow-xl flex flex-col gap-8">
+  <h1 className="text-4xl font-bold text-center ">Get in Touch</h1>
 
-        <div className=" w-1/2 pl-5 flex flex-col justify-between ">
-        <h3 className="text-2xl font-bold text-center">Contact Information</h3>
-          <tr className="flex flex-row justify-evenly ">
-            <td><IoMdMailUnread size={60} color="f2cc8f" /></td>
-            <td className="content-center text-2xl">Email: <a href="mailto:contact@shofy.com" className="text-accent">contact@gmail.com </a></td> 
-          </tr>
-          <tr className="flex flex-row justify-evenly ">
-            
-            <td><FaPhoneAlt size={60} color="e07a5f" /></td> 
-            <td className=" content-center text-2xl">Phone:{" "}<a href="tel:+67041390762" className="text-accent"> +670 413 90 762</a></td>
-          </tr>
-          <tr className="flex flex-row justify-evenly " >
-            <td><a href="https://www.scaler.com/topics/course/javascript-beginners/?event=signup_event" className="text-accent" >
-              <img
-                aria-hidden="true"
-                alt="service"
-                src={facebook}
-                className="h-16 w-16"
-              />
-              Facebook
-            </a></td>
-            <td><a href="#" className="text-accent">
-              <img
-                aria-hidden="true"
-                alt="service"
-                src={twitter}
-                className="h-16 w-16"
-              />
-              Twitter
-            </a></td>
-            <td> <a href="#" className="text-accent">
-              <img
-                aria-hidden="true"
-                alt="service"
-                src={instagram}
-                className="h-16 w-16"
-              />
-              Instagram
-            </a></td>
-          </tr>
+  <div className="flex flex-col md:flex-row gap-6">
+    {/* Form */}
+    <form onSubmit={submit} className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
+      {["Name", "Email", "Subject", "Message"].map((field, index) => (
+        <div key={index} className="mb-4">
+          <label className="block text-sm font-semibold mb-1">{field}</label>
+          {field === "Message" ? (
+            <textarea
+              name={field}
+              rows="4"
+              placeholder={`Write your messages here...`}
+              onChange={handelinput}
+              className="w-full border border-gray-300 rounded-md text-black p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          ) : (
+            <input
+              type={field === "Email" ? "email" : "text"}
+              name={field}
+              placeholder={field === "Name" ? "Aashish Giri" : `Write your ${field.toLowerCase()}`}
+              onChange={handelinput}
+              className="w-full border border-gray-300 rounded-md p-2  text-black focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          )}
         </div>
+      ))}
+      <div className="text-center">
+        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition">
+          Send Message
+        </button>
       </div>
+    </form>
+
+    {/* Contact Info */}
+    <div className="w-full md:w-1/2 bg-gradient-to-br from-blue-100 to-blue-200 p-6 rounded-xl shadow-lg flex flex-col justify-between">
+  <h3 className="text-3xl font-bold text-blue-900 mb-6 text-center">Contact Information</h3>
+
+  {/* Email */}
+  <div className="flex items-center gap-4 mb-4">
+    <IoMdMailUnread size={32} className="text-yellow-500" />
+    <div>
+      <p className="text-base font-medium text-gray-800">Email</p>
+      <a href="mailto:contact@gmail.com" className="text-blue-700 underline">contact@gmail.com</a>
+    </div>
+  </div>
+
+  {/* Phone */}
+  <div className="flex items-center gap-4 mb-4">
+    <FaPhoneAlt size={28} className="text-red-500" />
+    <div>
+      <p className="text-base font-medium text-gray-800">Phone</p>
+      <a href="tel:+67041390762" className="text-blue-700 underline">+670 413 90 762</a>
+    </div>
+  </div>
+
+  {/* Address */}
+  <div className="flex items-start gap-4 mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 12.414a4 4 0 10-5.657 5.657l4.243 4.243a8 8 0 0011.314-11.314l-4.243 4.243z" /></svg>
+    <div>
+      <p className="text-base font-medium text-gray-800">Address</p>
+      <p className="text-gray-700">Gorakhpur, India</p>
+    </div>
+  </div>
+
+  {/* Working Hours */}
+  <div className="flex items-start gap-4 mb-6">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <div>
+      <p className="text-base font-medium text-gray-800">Working Hours</p>
+      <p className="text-gray-700">24 Hours</p>
+    </div>
+  </div>
+
+  {/* Social Media */}
+  <div className="flex justify-center gap-6">
+    <a href="#" className="transform hover:scale-110 transition">
+      <img src={facebook} alt="Facebook" className="h-10 w-10" />
+    </a>
+    <a href="#" className="transform hover:scale-110 transition">
+      <img src={twitter} alt="Twitter" className="h-10 w-10" />
+    </a>
+    <a href="#" className="transform hover:scale-110 transition">
+      <img src={instagram} alt="Instagram" className="h-10 w-10" />
+    </a>
+  </div>
+</div>
+
+  </div>
+</div>
+
       <Footer />
     </>
   );

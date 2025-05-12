@@ -81,13 +81,13 @@ function Product() {
     <>
       <Navigationbar />
       <Banner />
-      <div className="flex justify-around m-2 p-4 bg-background border-t-black border-b-black border-2">
+      <div className="flex justify-around m-2 p-4  border-t-black border-b-black border-2 bg-gradient-to-r from-blue-600 to-indigo-400 text-white">
         <div className="flex flex-col items-center text-center">
           <img
             aria-hidden="true"
             alt="truck"
             src={truck}
-            className="h-36 w-36"
+            className="h-36 w-36 rounded-full"
           />
           <h3 className="mt-2 text-lg font-semibold text-primary">Free Shopping</h3>
           <p className="text-muted-foreground">Free Shopping World Wide</p>
@@ -97,7 +97,7 @@ function Product() {
             aria-hidden="true"
             alt="service"
             src={hour}
-            className="h-36 w-36"
+            className="h-36 w-36 rounded-full"
           />
           <h3 className="mt-2 text-lg font-semibold text-primary">
             24 X 7 Service
@@ -109,7 +109,7 @@ function Product() {
             aria-hidden="true"
             alt="offer"
             src={festival}
-            className="h-36 w-36"
+            className="h-36 w-36 rounded-full"
           />
           <h3 className="mt-2 text-lg font-semibold text-primary">
             Festival Offer
@@ -121,7 +121,7 @@ function Product() {
             aria-hidden="true"
             alt="service"
             src={dollar}
-            className="h-36 w-36"
+            className="h-36 w-36 rounded-full"
           />
           <h3 className="mt-2 text-lg font-semibold text-primary">
             Return & Refund
@@ -161,8 +161,8 @@ function Product() {
 
 
   {/* Categories Section */}
- <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-400">
-        <div className="max-w-7xl mx-auto px-6">
+ <section className="py-16  bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {item.map((item,index) => (
@@ -186,10 +186,10 @@ function Product() {
 
 
   {/* Featured Products */}
-  <section className="w-full py-20 bg-gray-100">
+  <section className="w-full py-20 bg-gradient-to-r from-blue-600 to-indigo-400 text-white">
     <div className="container mx-auto px-6 text-center">
-      <h2 className="text-4xl font-bold text-gray-800">Featured Products</h2>
-      <p className="text-gray-600 mt-2">Our most popular men's styles based on sales</p>
+      <h2 className="text-4xl font-bold ">Featured Products</h2>
+      <p className=" mt-1 ">Our most popular men's styles based on sales</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
         {[...data].reverse().slice(0, 4).map((item, index) => (
           <div key={index} className="bg-white rounded-lg shadow hover:shadow-xl transition p-4">
@@ -214,13 +214,13 @@ function Product() {
   </section>
 
   {/* Special Offer */}
-  <section className="py-10 pl-20 bg-gradient-to-r from-blue-600 to-indigo-400 text-white">
+  <section className="py-10 pl-20 ">
     <div className="container mx-auto px-6">
       <div className="grid lg:grid-cols-2 gap-20 items-center">
         <div>
           <h2 className="text-4xl font-bold">Men's Collection Sale</h2>
           <p className="mt-4 text-lg">Up to 50% off on selected men's apparel. Limited time offer.</p>
-          <button className="mt-6 px-6 py-3 bg-white text-blue-700 font-semibold rounded-lg hover:bg-gray-100 transition">
+          <button className="mt-6 px-6 py-3 bg-blue-600  text-white font-semibold rounded-lg hover:bg-gray-100 transition">
             Shop Now
           </button>
         </div>
@@ -228,7 +228,7 @@ function Product() {
           <img
             src="https://m.media-amazon.com/images/I/61SDTiZdvHL._AC_UL480_FMwebp_QL65_.jpg"
             alt="Sale"
-            className="h-2/3 w-2/3 runded-lg  object-cover"
+            className="h-2/3 w-2/3 rounded-3xl  object-cover"
           />
         </div>
       </div>
@@ -236,7 +236,7 @@ function Product() {
   </section>
 
   {/* AI Customization */}
-  <section className="w-full py-20 pl-20 bg-slate-50">
+  {/* <section className="w-full py-20 pl-20 bg-slate-50">
     
     <div className="container px-6 mx-auto grid lg:grid-cols-2 gap-10 items-center">
         <img
@@ -266,13 +266,13 @@ function Product() {
       </div>
     
     </div>
-  </section>
+  </section> */}
 
   {/* Testimonials */}
-  <section className="w-full py-20 bg-gradient-to-r from-blue-600 to-indigo-400">
+  <section className="w-full py-20 bg-gradient-to-r from-blue-600 to-indigo-400 text-white">
     <div className="container px-6 mx-auto text-center">
-      <h2 className="text-4xl font-bold text-gray-800">What Our Customers Say</h2>
-      <p className="text-gray-500 mt-2">Don't just take our word for it, hear from our satisfied customers</p>
+      <h2 className="text-4xl font-bold ">What Our Customers Say</h2>
+      <p className=" mt-2">Don't just take our word for it, hear from our satisfied customers</p>
       <div className="grid md:grid-cols-3 gap-6 mt-10">
         {[
           { name: "James Wilson", comment: "Exceptional shirt quality. Perfect fit!", rating: 5 },
@@ -290,10 +290,10 @@ function Product() {
   </section>
 
   {/* Newsletter */}
-  <section className="w-full py-20 bg-blue-100">
+  {/* <section className="w-full py-20  bg-gradient-to-r from-blue-600 to-indigo-400 text-white">
     <div className="container px-6 mx-auto text-center">
-      <h2 className="text-4xl font-bold text-gray-800">Join Our Newsletter</h2>
-      <p className="text-gray-600 mt-2 mb-6">Subscribe for special offers and exclusive deals</p>
+      <h2 className="text-4xl font-bold ">Join Our Newsletter</h2>
+      <p className=" mt-2 mb-6">Subscribe for special offers and exclusive deals</p>
       <form className="flex justify-center gap-4 flex-wrap max-w-md mx-auto">
         <input
           type="email"
@@ -305,11 +305,11 @@ function Product() {
           Subscribe
         </button>
       </form>
-      <p className="text-sm text-gray-500 mt-4">
+      <p className="text-sm  mt-4">
         By subscribing, you agree to our <a href="#" className="underline">Terms</a> and <a href="#" className="underline">Privacy Policy</a>.
       </p>
     </div>
-  </section>
+  </section> */}
      </main>
 
       <Footer />
