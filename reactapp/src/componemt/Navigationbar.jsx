@@ -97,12 +97,7 @@ const handleSearch = (e) => {
               >
                 Login
               </Link>
-              <Link
-                to="/product/signin"
-                className="px-3 py-1 rounded-xl bg-blue-800 text-white"
-              >
-                Sign-Up
-              </Link>
+             
             </>
           ) : (
             <>
