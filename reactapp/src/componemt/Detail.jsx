@@ -209,7 +209,7 @@ function Detail() {
           </tbody>
         </table>
       </div>
-      <Reviws/>
+      <Reviws product={product}/>
       <Footer/>
     </div>
   );

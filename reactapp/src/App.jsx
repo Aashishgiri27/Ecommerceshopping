@@ -11,7 +11,7 @@ import Cart from "./componemt/Cart";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import React from "react";
-
+import Profile from "./componemt/Profile"
 import "./App.css";
 import Adminproduct from "./componemt/Adminpage/Adminproduct";
 import Adminorder from "./componemt/Adminpage/Adminorder"
@@ -51,7 +51,7 @@ function App() {
         <Route path="/product/Trousers" element={<Trousers />}></Route>
         <Route path="/product/Accessories" element={<Accessories />}></Route>
         <Route path="/product/search/:name" element={<SearchResults />} ></Route>
-
+        <Route path="/user/profile" element={<Profile />}></Route>
         <Route path="/product/jeans" element={<Gens />}></Route>
         <Route path="/product/signin" element={<Signin />}></Route>
         <Route path="/product/login" element={<Login />}></Route>

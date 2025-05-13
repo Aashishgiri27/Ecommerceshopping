@@ -106,7 +106,7 @@ const handleSearch = (e) => {
             </>
           ) : (
             <>
-              <Link to="/profile" className="text-white text-2xl">
+              <Link to="/user/profile" className="text-white text-2xl">
                 <FaUserCircle />
               </Link>
               <button

@@ -93,6 +93,22 @@ router.post("/product/login", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try { 
+    const id = req.params.id;
+    const user = await usermodel.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    console.error("Search error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+
 // router.get("/product/login",async(req,res)=>{
 //   try{
 //     let data= await usermodel.find();

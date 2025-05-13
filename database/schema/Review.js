@@ -18,6 +18,9 @@ const reviewSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+  },
+  product: {
+    type: mongoose.Schema.Types.Mixed, // ✅ allows storing full object
   }
 }, {
   timestamps: true,

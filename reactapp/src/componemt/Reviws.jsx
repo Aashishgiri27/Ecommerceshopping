@@ -4,12 +4,13 @@ import toast from "react-hot-toast";
 
 const baseUrl = 'http://127.0.0.1:3000';
 
-function Reviws() {
+function Reviws({product}) {
   const [reviewData, setReviewData] = useState({
     rating: 5,
     review: "",
     name: "",
     email: "",
+    product: product
   });
 
   const handleChange = (e) => {
@@ -19,10 +20,11 @@ function Reviws() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try { 
-      console.log("===========>")
+     
       await axios.post(baseUrl + "/api/users/product/review", reviewData);
       toast.success("Review submitted!");
-      setReviewData({ rating: 5, review: "", name: "", email: "" });
+      console.log(product)
+      setReviewData({ rating: 5, review: "", name: "", email: "", });
     } catch (err) {
       console.error(err);
       toast.error("Failed to submit review");
