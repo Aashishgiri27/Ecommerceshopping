@@ -30,8 +30,13 @@ function Signin() {
     try {
       const response = await axios.post(baseUrl +"/api/users/product/signin", userdata);
       console.log(response)
+
       // const { token, user } = response.data.userdata;
-      
+
+      // Save user email to localStorage (make sure your response includes email)
+      localStorage.setItem('email', response.data.user.Email);
+      // Redirect or update state as needed
+    
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.user.id);
       setTimeout(() => {

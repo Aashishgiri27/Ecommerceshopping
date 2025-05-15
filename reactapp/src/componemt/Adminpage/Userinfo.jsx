@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from './Layout'
 import  { useState, useEffect } from "react";
-
+import { FaSearch, FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 const baseUrl = 'http://127.0.0.1:3000'
 function    Userinfo() {
@@ -21,42 +21,84 @@ function    Userinfo() {
   return (
     <>
       <Layout>
-      {/* <div class="flex flex-col p-4 bg-background text-foreground">
-  <div class="flex justify-between items-center mb-4">
-    <h1 class="text-xl font-bold">CATEGORY</h1>
-    <button class="bg-accent text-accent-foreground px-4 py-2 rounded">ADD CATEGORY</button>
-  </div>
-  <div class="relative mb-4">
-    <input type="text" placeholder="Search..." class="border border-border rounded-lg p-2 w-full" />
-  </div> */}
-  <div className="max-h-96 overflow-y-scroll block p-20">
-
-  <table class=" bg-card border border-border">
-    <thead className='bg-[#7d8597] text-white h-14'>
-      <tr>
-        <th class="py-2 px-4 border-b border-border">Image</th>
-        <th class="py-2 px-4 border-b border-border">Name</th>
-        <th class="py-2 px-4 border-b border-border">Email ID</th>
-        <th class="py-2 px-4 border-b border-border">Status</th>
-        <th class="py-2 px-4 border-b border-border">Username</th>
+   
+<div className="max-h-[600px] overflow-y-auto p-8 bg-gradient-to-br from-white via-gray-100 to-white rounded-xl shadow-xl">
+  <table className="w-full border-separate border-spacing-0 rounded-lg overflow-hidden text-sm text-gray-800">
+    <thead>
+      <tr className="bg-gradient-to-r from-[#607d8b] to-[#90a4ae] text-white text-left">
+        <th className="py-4 px-5 border border-gray-300">Image</th>
+        <th className="py-4 px-5 border border-gray-300">Name</th>
+        <th className="py-4 px-5 border border-gray-300">Email ID</th>
+        <th className="py-4 px-5 border border-gray-300">Status</th>
+        <th className="py-4 px-5 border border-gray-300">Username</th>
+        <th className="py-4 px-5 border border-gray-300">Created At</th>
+        <th className="py-4 px-5 border border-gray-300">Updated At</th>
       </tr>
     </thead>
 
     <tbody>
-    {[...data].reverse().map((item, index) => (
-      <tr key={index} >
-        <td class="h-6 w-6 py-2 px-4 border-b border-border"><img  src={item.img} alt={item.name}/></td>
-        <td class="py-2 px-4 border-b border-border">{item.Firstname} </td>
-        <td class="py-2 px-4 border-b border-border">{item.Email}</td>
-        <td class="py-2 px-4 border-b border-border"><span class="bg-success text-success-foreground px-2 py-1 rounded">Active</span></td>
-        <td class="py-2 px-4 border-b border-border">{item.Username}</td>
+      {[...data].reverse().map((item, index) => {
+        const createdAtDate = item.createdAt ? new Date(item.createdAt) : null;
+        const updatedAtDate = item.updatedAt ? new Date(item.updatedAt) : null;
 
-      </tr>
-        ))}
-    
+        const createdAt =
+          createdAtDate && !isNaN(createdAtDate)
+            ? createdAtDate.toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })
+            : "N/A";
+
+        const updatedAt =
+          updatedAtDate && !isNaN(updatedAtDate)
+            ? updatedAtDate.toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })
+            : "N/A";
+
+        return (
+          <tr
+            key={index}
+            className="hover:bg-blue-50 transition duration-200 border-b border-gray-200"
+          >
+            <td className="py-3 px-5">
+              {item.img ? (
+                <img
+                  src={item.img}
+                  alt={item.Firstname}
+                  className="h-10 w-10 rounded-full object-cover"
+                />
+              ) : (
+                <FaUserCircle className="h-10 w-10 text-gray-400" />
+              )}
+            </td>
+            <td className="py-3 px-5 font-medium capitalize">{item.Firstname}</td>
+            <td className="py-3 px-5">{item.Email}</td>
+            <td className="py-3 px-5">
+              <span className="inline-block bg-green-100 text-green-700 px-3 py-1 text-xs font-semibold rounded-full">
+                Active
+              </span>
+            </td>
+            <td className="py-3 px-5">{item.Username}</td>
+            <td className="py-3 px-5 text-gray-600">{createdAt}</td>
+            <td className="py-3 px-5 text-gray-600">{updatedAt}</td>
+          </tr>
+        );
+      })}
     </tbody>
   </table>
-  </div>
+</div>
+
+
 {/* </div> */}
       </Layout>
     </>

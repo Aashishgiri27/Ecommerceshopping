@@ -25,40 +25,53 @@ function Adminmessage() {
     <>
       <Layout>
      
-  <div className=" overflow-y-scroll block p-10">
-
-  <table className="bg-white shadow-lg rounded-lg overflow-hidden w-full">
-            <thead className="bg-[#7d8597] text-white h-20 ">
-      <tr>
-        <th class="py-2 px-4 border-b border-border">S.No</th>
-        <th class="py-2 px-4 border-b border-border">Name</th>
-        <th class="py-2 px-4 border-b border-border">Email</th>
-        <th class="py-2 px-4 border-b border-border">Subject</th>
-        <th class="py-2 px-4 border-b border-border">Messages</th>
-        <th class="py-2 px-4 border-b border-border">Date</th>
+<div className="max-h-[600px] overflow-y-scroll block p-10 bg-gray-100 rounded-xl shadow-inner">
+  <table className="w-full bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+    <thead className="bg-gradient-to-r from-[#6a85b6] to-[#bac8e0] text-white text-left text-sm">
+      <tr className="h-16">
+        <th className="py-3 px-6 border-b">S.No</th>
+        <th className="py-3 px-6 border-b">Name</th>
+        <th className="py-3 px-6 border-b">Email</th>
+        <th className="py-3 px-6 border-b">Subject</th>
+        <th className="py-3 px-6 border-b">Message</th>
+        <th className="py-3 px-6 border-b">Date</th>
       </tr>
     </thead>
 
-    <tbody className='h-40'>
-    {data.length > 0 && [...data].reverse().map((item, index) => (
-       
-          <tr key={index} >
-            <td class=" py-2 px-4 border-b border-border">{index+1}</td>
-            <td class="py-2 px-4 border-b border-border">{item.Name} </td>
-            <td class="py-2 px-4 border-b border-border">{item.Email}</td>
-            <td class="py-2 px-4 border-b border-border">{item.Subject}</td>
-            <td class="py-2 px-4 border-b border-border">{item.Message}</td>
-            <td class="py-2 px-4 border-b border-border">{new Date(item.createdAt).toLocaleString('en-US', { year:
-              'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:
-              '2-digit' })}</td>
-    
+    <tbody>
+      {data.length > 0 &&
+        [...data].reverse().map((item, index) => (
+          <tr
+            key={index}
+            className="hover:bg-blue-50 transition duration-200 text-sm text-gray-800"
+          >
+            <td className="py-4 px-6 border-b">{index + 1}</td>
+            <td className="py-4 px-6 border-b font-medium capitalize">{item.Name}</td>
+            <td className="py-4 px-6 border-b">{item.Email}</td>
+            <td className="py-4 px-6 border-b">
+              <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
+                {item.Subject}
+              </span>
+            </td>
+            <td className="py-4 px-6 border-b">{item.Message}</td>
+            <td className="py-4 px-6 border-b text-gray-600">
+              {item.createdAt
+                ? new Date(item.createdAt).toLocaleString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })
+                : "N/A"}
+            </td>
           </tr>
-           
         ))}
-    
     </tbody>
   </table>
-  </div>
+</div>
+
 
       </Layout>
     </>

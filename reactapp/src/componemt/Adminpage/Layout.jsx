@@ -1,74 +1,53 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-
+import { LayoutDashboard, Users, PlusSquare, MessageSquare } from "lucide-react"; // optional icons
 import "../adminpagecss/layout.css";
 
 const navitem = [
-  {
-    label: "Product",
-    href: "/admin/products",
-  },
-  // {
-  //   label: "Order",
-  //   href: "/admin/order",
-  // },
-  // {
-  //   label: "Payment",
-  //   href: "/admin/payment",
-  // },
-  {
-    label: "Add item",
-    href: "/admin/additem",
-  },
-  {
-    label:"Users",
-    href:"/admin/Users"
-  },{
-    label:"Messages",
-    href:"/admin/messages"
-  }
-
+  { label: "Product", href: "/admin/products", icon: <LayoutDashboard size={18} /> },
+  { label: "Add Item", href: "/admin/additem", icon: <PlusSquare size={18} /> },
+  { label: "Users", href: "/admin/Users", icon: <Users size={18} /> },
+  { label: "Messages", href: "/admin/messages", icon: <MessageSquare size={18} /> },
+   { label: "Reviews", href: "/admin/reviews", icon: <MessageSquare size={18} /> },
 ];
 
 function Layout({ children }) {
   const location = useLocation();
-  console.log(location);
 
   return (
-    <>
-      <div className="admincontainer">
-        <section className="verticalheader primary-background-color white-color">
-          {navitem.map((item, index) => (
-            <div key={index} className="verticalheaderitem">
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 bg-[#043873] text-white shadow-lg flex flex-col p-4">
+        <h2 className="text-xl font-bold mb-8 text-yellow-400">Admin Panel</h2>
+        <nav className="space-y-3">
+          {navitem.map((item, index) => {
+            const isActive = location.pathname === item.href;
+            return (
               <Link
+                key={index}
                 to={item.href}
-                className="adminheaderitem"
-                style={{
-                  backgroundColor: location.pathname === item.href ? '#eec643' : 'transparent',
-                  color: location.pathname === item.href ? 'white' : 'white', 
-                  borderBottom: location.pathname === item.href ? '1px solid black' : ' transparent', 
-                  borderTop: location.pathname === item.href ? '1px solid black' : ' transparent',
-                  borderRadius:location.pathname === item.href ?'5px': 'none'
-                  // boxShadow: location.pathname === item.href ? 'rgba((43, 44, 170,1) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px' : ' transparent',
-     // Add color change
-                  // Add color change
-                  // Add color change
-                  
-                }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition 
+                  ${isActive ? "bg-yellow-400 text-[#043873]" : "hover:bg-white/10"}`}
               >
-                <p>{item.label}</p>
+                {item.icon}
+                {item.label}
               </Link>
-            </div>
-          ))}
-        </section>
-        <section>
-          <div className="adminheader">
-            <p>FRIEND'S COLLECTION</p>
-          </div>
-          <div className="bg-[#F5F7FA]">{children}</div>
-        </section>
+            );
+          })}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 bg-[#F5F7FA]">
+        {/* Header */}
+        <header className="bg-white shadow px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-[#043873]">FRIEND'S COLLECTION</h1>
+        </header>
+
+        {/* Content */}
+        <main className="p-6">{children}</main>
       </div>
-    </>
+    </div>
   );
 }
 

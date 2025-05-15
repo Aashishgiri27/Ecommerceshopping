@@ -26,6 +26,7 @@ import { CartProvider } from "./CartContext";
 import Adminmessage from "./componemt/Adminpage/Adminmessage";
 import SearchResults from "./componemt/SearchResults";
 import { Toaster } from 'react-hot-toast';
+import AdminReview from "./componemt/Adminpage/AdminReview";
 function App() {
   return (
     <div>
@@ -38,8 +39,8 @@ function App() {
           <Route path="additem" element={<Additem/>}></Route>
           <Route path="Users" element={<Userinfo/>}></Route>
           <Route path="messages" element={<Adminmessage/>}></Route>
-          
-        </Route>
+          <Route path="reviews" element={<AdminReview/>}></Route>
+      </Route>
         <Route path="/" element={<Product />}></Route>
         <Route path="/product/:id" element={<Detail/>} ></Route>
         <Route path="/:product/:name/:id" element={<Detail/>} ></Route>

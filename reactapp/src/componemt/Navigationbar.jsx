@@ -3,8 +3,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../css/navigationbar.css";
 import "../App.css";
 import toast from 'react-hot-toast';
-import { FaSearch, FaUserCircle } from "react-icons/fa"; // Profile & search icons
-import logo from '../assets/logo.png'; // 👈 make sure this path is correct
+import { FaSearch, FaUserCircle } from "react-icons/fa";
+import logo from '../assets/logo.png';
 
 const navitem = [
   { label: "HOME", href: "/" },
@@ -19,37 +19,43 @@ const productItems = [
   { label: "Track Pants", href: "/product/Pants" },
   { label: "Jeans", href: "/product/jeans" },
   { label: "Trousers", href: "/product/Trousers" },
-  
 ];
+
+const ADMIN_EMAIL = "admin123@gmail.com";  // <-- Put your admin email here
 
 function Navigationbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [search, setSearch] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email"); 
+     console.log("Stored email:", email); // Assuming email is stored in localStorage
     setIsLoggedIn(!!token);
+    setUserEmail(email || "");
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("email");  // also clear email on logout
     setIsLoggedIn(false);
-    toast.success("Logout Successfully ");
+    setUserEmail("");
+    toast.success("Logout Successfully");
     setTimeout(() => {
       window.location.href = "/";
     }, 1000);
   };
 
-const handleSearch = (e) => {
-  e.preventDefault();
-
-  if (search.trim() !== "") {
-    navigate(`/product/search/${search.trim()}`);
-  }
-};
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim() !== "") {
+      navigate(`/product/search/${search.trim()}`);
+    }
+  };
 
   return (
     <div>
@@ -89,6 +95,16 @@ const handleSearch = (e) => {
             </Link>
           ))}
 
+          {/* Show Admin button only for specific email */}
+      {isLoggedIn && userEmail?.toLowerCase() === ADMIN_EMAIL.toLowerCase() && (
+  <Link
+    to="/admin/products"
+    className="px-3 py-1 rounded-xl bg-green-600 text-white hover:bg-green-700"
+  >
+    Admin
+  </Link>
+)}
+
           {!isLoggedIn ? (
             <>
               <Link
@@ -97,7 +113,6 @@ const handleSearch = (e) => {
               >
                 Login
               </Link>
-             
             </>
           ) : (
             <>
@@ -118,20 +133,18 @@ const handleSearch = (e) => {
       {/* Product Category Nav */}
       <div className="h-12 flex flex-row border-t-2 border-b-2 border-black">
         {productItems.map((item, index) => (
-          <div className="w-60 text-lg border-l-2 text-center flex items-center justify-center">
-          <Link
-            key={index}
-            to={item.href}
-            className={`px-10 py-1 rounded-xl  hover:bg-blue-200  ${
-              location.pathname === item.href ? "bg-blue-600 text-white" : ""
-            }`}
-          >
-            {item.label}
-          </Link>
+          <div key={index} className="w-60 text-lg border-l-2 text-center flex items-center justify-center">
+            <Link
+              to={item.href}
+              className={`px-10 py-1 rounded-xl hover:bg-blue-200 ${
+                location.pathname === item.href ? "bg-blue-600 text-white" : ""
+              }`}
+            >
+              {item.label}
+            </Link>
           </div>
         ))}
       </div>
-      
     </div>
   );
 }

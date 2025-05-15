@@ -1,11 +1,10 @@
-import React from 'react'
-import Layout from './Layout'
-import  { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Layout from "./Layout";
 
 function Adminproduct() {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     getData();
   }, []);
@@ -18,53 +17,68 @@ function Adminproduct() {
       console.error("Error fetching data", error);
     }
   };
-  return (
-    <>
-      <Layout>
-      <div class="flex flex-col p-4 bg-background text-foreground">
-  <div class="flex justify-between items-center mb-4">
-    <h1 class="text-xl font-bold">CATEGORY</h1>
-    <button class="bg-accent text-accent-foreground px-4 py-2 rounded">ADD CATEGORY</button>
-  </div>
-  <div class="relative mb-4">
-    <input type="text" placeholder="Search..." class="border border-border rounded-lg p-2 w-full" />
-  </div>
-  <div className="max-h-96 overflow-y-scroll block">
 
-  <table className="bg-white shadow-lg rounded-lg overflow-hidden w-full">
-            <thead className="bg-[#7d8597] text-white">
-      <tr>
-        <th class="py-2 px-4 border-b border-border">Image</th>
-        <th class="py-2 px-4 border-b border-border">Name</th>
-        <th class="py-2 px-4 border-b border-border">Price</th>
-        <th class="py-2 px-4 border-b border-border">Status</th>
-        <th class="py-2 px-4 border-b border-border">Category</th>
-        <th class="py-2 px-4 border-b border-border">Option</th>
+  return (
+    <Layout>
+    <div className="max-h-[600px] overflow-y-auto p-8 bg-gradient-to-br from-white via-gray-100 to-white rounded-xl shadow-xl">
+  <table className="w-full table-auto bg-white text-sm text-gray-800 rounded-xl overflow-hidden border border-gray-200 shadow-lg">
+    <thead className="bg-gradient-to-r from-[#043873] to-[#2b6cb0] text-white sticky top-0 z-10">
+      <tr className="h-16 text-left text-sm">
+        <th className="px-6">Image</th>
+        <th className="px-6">Name</th>
+        <th className="px-6">Price</th>
+        <th className="px-6">Status</th>
+        <th className="px-6">Category</th>
+        <th className="px-6">Actions</th>
       </tr>
     </thead>
 
     <tbody>
-    {[...data].reverse().map((item, index) => (
-      <tr key={index} >
-        <td class="h-6 w-6 py-2 px-4 border-b border-border"><img  src={item.img} alt={item.name}/></td>
-        <td class="py-2 px-4 border-b border-border">{item.name} </td>
-        <td class="py-2 px-4 border-b border-border">{item.price}</td>
-        <td class="py-2 px-4 border-b border-border"><span class="bg-success text-success-foreground px-2 py-1 rounded">Success</span></td>
-        <td class="py-2 px-4 border-b border-border">{item.color}</td>
-        <td class="py-2 px-4 border-b border-border">
-          <button class="h-6 mr-2 text-white w-10 bg-blue-600">Edit</button>
-          <button class="h-6 w-14 bg-red-700 text-white">Delete</button>
-        </td>
-      </tr>
-        ))}
-    
+      {[...data].reverse().map((item, index) => (
+        <tr
+          key={index}
+          className="hover:bg-blue-50 transition duration-200 border-b border-gray-200"
+        >
+          <td className="px-6 py-4">
+            <img
+              src={item.img}
+              alt={item.name}
+              className="h-14 w-14 object-cover rounded-md border border-gray-300 shadow-sm"
+            />
+          </td>
+          <td className="px-6 py-4 font-medium capitalize">{item.name}</td>
+          <td className="px-6 py-4 font-semibold">₹{item.price}</td>
+          <td className="px-6 py-4">
+            <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
+              Available
+            </span>
+          </td>
+          <td className="px-6 py-4 capitalize">{item.color}</td>
+          <td className="px-6 py-4 space-x-2">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-xs font-semibold">
+              Edit
+            </button>
+            <button className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-semibold">
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))}
+
+      {data.length === 0 && (
+        <tr>
+          <td colSpan="6" className="text-center text-gray-500 py-10 text-lg">
+            No products found.
+          </td>
+        </tr>
+      )}
     </tbody>
   </table>
-  </div>
 </div>
-      </Layout>
-    </>
-  )
+
+
+    </Layout>
+  );
 }
 
-export default Adminproduct
+export default Adminproduct;
