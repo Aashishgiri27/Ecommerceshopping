@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router()
+const router = express.Router();
 const usermodel = require("../schema/userschema");
 const userquerymodel = require("../schema/contactschema");
 const jwt = require("jsonwebtoken");
@@ -27,30 +27,32 @@ router.post("/product/signin", async (req, res) => {
       Email,
       Password: hashedPassword,
       Username,
-      Mobileno
+      Mobileno,
     });
 
     const response = await user.save();
     console.log("User created securely");
 
     // (Optional) Create a JWT token
-    const token = jwt.sign({ id: user._id, email: user.Email }, process.env.JWT_SECURE || "defaultsecret");
+    const token = jwt.sign(
+      { id: user._id, email: user.Email },
+      process.env.JWT_SECURE || "defaultsecret"
+    );
 
     res.status(201).json({
       message: "User registered successfully",
       user: {
         id: response._id,
         Email: response.Email,
-        Username: response.Username
+        Username: response.Username,
       },
-      token
+      token,
     });
   } catch (error) {
     console.error("Signup error:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 
 router.post("/product/login", async (req, res) => {
   try {
@@ -84,17 +86,18 @@ router.post("/product/login", async (req, res) => {
         Email: user.Email,
         Username: user.Username,
       },
-      token
+      token,
     });
-
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
 
+// OTP
+
 router.get("/:id", async (req, res) => {
-  try { 
+  try {
     const id = req.params.id;
     const user = await usermodel.findById(id);
     if (!user) {
@@ -107,8 +110,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
-
 // router.get("/product/login",async(req,res)=>{
 //   try{
 //     let data= await usermodel.find();
@@ -117,9 +118,8 @@ router.get("/:id", async (req, res) => {
 //   }catch(error){
 //     console.log("error", error);
 //     res.status(500).json({ error: "soory you are not login" });
-//   }  
+//   }
 // });
-
 
 router.post("/product/messages", async (req, res) => {
   try {
@@ -134,8 +134,8 @@ router.post("/product/messages", async (req, res) => {
   }
 });
 
-router.get('/product/messages', async (req, res) => {
-  console.log("hello")
+router.get("/product/messages", async (req, res) => {
+  console.log("hello");
   try {
     const data = await userquerymodel.find();
     console.log("Fetched contact messages:", data);
@@ -146,13 +146,9 @@ router.get('/product/messages', async (req, res) => {
   }
 });
 
-
-
 router.post("/product/review", async (req, res) => {
   try {
-
-
-     console.log("===========>1232442")
+    console.log("===========>1232442");
     const data = req.body;
     console.log("Incoming contact message:", data);
     const user = new reviewModel(data);
@@ -164,9 +160,8 @@ router.post("/product/review", async (req, res) => {
   }
 });
 
-
-router.get('/product/review', async (req, res) => {
-  try { 
+router.get("/product/review", async (req, res) => {
+  try {
     const data = await reviewModel.find();
     console.log("Fetched contact messages:", data);
     res.status(200).json(data);
@@ -175,5 +170,5 @@ router.get('/product/review', async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-module.exports = router
 
+module.exports = router;

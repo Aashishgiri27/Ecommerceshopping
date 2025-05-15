@@ -59,18 +59,18 @@ function Product() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios.get("/product");
-  //     setData(response.data);
-  //   } catch (error) {
-  //     console.error("Error fetching data", error);
-  //   }
-  // };
+  const getData = async () => {
+    try {
+      const response = await axios.get("/product");
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
+  };
 
   const handleBuyNowClick = (itemId) => {
     console.log(`in product ${itemId}`);
