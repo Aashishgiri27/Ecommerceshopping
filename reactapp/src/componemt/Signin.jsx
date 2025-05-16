@@ -36,6 +36,7 @@ function Signin() {
       // Save user email to localStorage (make sure your response includes email)
       localStorage.setItem('email', response.data.user.Email);
       // Redirect or update state as needed
+      
     
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.user.id);

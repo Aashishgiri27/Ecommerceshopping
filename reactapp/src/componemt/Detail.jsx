@@ -51,7 +51,9 @@ function Detail() {
     }
   };
   
-
+  const handleBuyNow = () => {
+    navigate("/buy", { state: { product } });
+  };
   return (
     <div>
       <Navigationbar />
@@ -130,7 +132,7 @@ function Detail() {
             <button className="bg-primary bg-slate-700 text-primary-foreground p-3 rounded-lg w-full" onClick={handleAddToCart}>
               Add To Cart
             </button>
-            <button className="bg-accent bg-blue-600 text-accent-foreground p-3 rounded-lg w-full mt-2">
+            <button className="bg-accent bg-blue-600 text-accent-foreground p-3 rounded-lg w-full mt-2"  onClick={handleBuyNow}>
               Buy Now
             </button>
           </div>

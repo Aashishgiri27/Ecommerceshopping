@@ -62,6 +62,8 @@ const Userroutes = require("./routes/Userroutes");
 app.use("/api/users", Userroutes);
 const Sendotp = require("./routes/Sendotp");
 app.use("/api/otp", Sendotp);
+const purchaseroute = require("./routes/Purchaseroute");
+app.use("/api", purchaseroute);
 
 app.listen(3000, () => {
   console.log(`server running in  port http://localhost:3000`);

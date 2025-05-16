@@ -37,10 +37,10 @@ function Login() {
         data
       );
       const { token, user } = response.data;
-
+     console.log(response)
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user.id);
-
+       localStorage.setItem('verification', response.data.user.isverifyed);
       toast.success("Login successful ✅");
 
       setTimeout(() => {

@@ -45,6 +45,7 @@ router.post("/product/signin", async (req, res) => {
         id: response._id,
         Email: response.Email,
         Username: response.Username,
+        isverifyed:response.isverifyed
       },
       token,
     });
@@ -85,6 +86,7 @@ router.post("/product/login", async (req, res) => {
         id: user._id,
         Email: user.Email,
         Username: user.Username,
+         isverifyed:user.isverifyed
       },
       token,
     });
@@ -93,6 +95,9 @@ router.post("/product/login", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+
+
 
 // OTP
 

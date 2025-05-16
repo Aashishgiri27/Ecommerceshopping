@@ -27,6 +27,8 @@ import Adminmessage from "./componemt/Adminpage/Adminmessage";
 import SearchResults from "./componemt/SearchResults";
 import { Toaster } from 'react-hot-toast';
 import AdminReview from "./componemt/Adminpage/AdminReview";
+import Buynow from "./componemt/Buynow";
+import AdminPurchaseList from "./componemt/Adminpage/AdminPurchaseList";
 function App() {
   return (
     <div>
@@ -40,7 +42,11 @@ function App() {
           <Route path="Users" element={<Userinfo/>}></Route>
           <Route path="messages" element={<Adminmessage/>}></Route>
           <Route path="reviews" element={<AdminReview/>}></Route>
+          <Route path="purchase" element={<AdminPurchaseList/>}></Route>
       </Route>
+    
+
+
         <Route path="/" element={<Product />}></Route>
         <Route path="/product/:id" element={<Detail/>} ></Route>
         <Route path="/:product/:name/:id" element={<Detail/>} ></Route>
@@ -56,6 +62,7 @@ function App() {
         <Route path="/product/jeans" element={<Gens />}></Route>
         <Route path="/product/signin" element={<Signin />}></Route>
         <Route path="/product/login" element={<Login />}></Route>
+        <Route path="/buy" element={<Buynow />} />
       </Routes>
     </CartProvider>
      

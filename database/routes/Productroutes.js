@@ -62,6 +62,22 @@ router.get("/product/:name", async (req, res) => {
     }
   });
 
+  // DELETE product by ID
+router.delete("/product/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedProduct = await productmodel.findByIdAndDelete(id);
+
+    if (!deletedProduct) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (err) {
+    console.error("Delete error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
  // Search products by name (case-insensitive)
 router.get("/product/search/:name", async (req, res) => {
   try {

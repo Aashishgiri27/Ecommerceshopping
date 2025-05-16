@@ -1,6 +1,5 @@
 // schema/userschema.js
 const mongoose = require("mongoose");
-
 const userschema = mongoose.Schema({
   Firstname: {
     type: String,
@@ -23,10 +22,15 @@ const userschema = mongoose.Schema({
   Mobileno: {
     type: Number,
     required: true
+  },
+  isverifyed: {
+    type: Boolean,
+    default: false  // <-- default value here
   }
 }, {
   timestamps: true
 });
+
 
 const usermodel = mongoose.model("User", userschema);
 module.exports = usermodel;

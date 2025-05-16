@@ -2,13 +2,16 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LayoutDashboard, Users, PlusSquare, MessageSquare } from "lucide-react"; // optional icons
 import "../adminpagecss/layout.css";
+import { Star, ShoppingCart } from "react-feather";
+
 
 const navitem = [
   { label: "Product", href: "/admin/products", icon: <LayoutDashboard size={18} /> },
   { label: "Add Item", href: "/admin/additem", icon: <PlusSquare size={18} /> },
   { label: "Users", href: "/admin/Users", icon: <Users size={18} /> },
   { label: "Messages", href: "/admin/messages", icon: <MessageSquare size={18} /> },
-   { label: "Reviews", href: "/admin/reviews", icon: <MessageSquare size={18} /> },
+  { label: "Reviews", href: "/admin/reviews", icon: <Star size={18} /> },          // Star icon for Reviews
+  { label: "Purchase Item", href: "/admin/purchase", icon: <ShoppingCart size={18} /> }, // ShoppingCart icon for Purchase Item
 ];
 
 function Layout({ children }) {
@@ -42,6 +45,12 @@ function Layout({ children }) {
         {/* Header */}
         <header className="bg-white shadow px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-[#043873]">FRIEND'S COLLECTION</h1>
+             <Link
+                        to="/"
+                        className="px-3 py-1 rounded-xl bg-green-600 text-white hover:bg-green-700"
+                      >
+                        Home
+                      </Link>
         </header>
 
         {/* Content */}
