@@ -42,7 +42,8 @@ function Navigationbar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
-    localStorage.removeItem("email"); // also clear email on logout
+    localStorage.removeItem("email");
+    localStorage.removeItem("verification"); // also clear email on logout
     setIsLoggedIn(false);
     setUserEmail("");
     toast.success("Logout Successfully");
@@ -63,9 +64,9 @@ function Navigationbar() {
       {/* Top Nav */}
       <div className="h-16 w-full px-6 flex justify-between items-center primary-background-color shadow-md">
         {/* Logo */}
-        <div className="flex items-center gap-2"onClick={()=>navigate("/")} >
-          <img src={logo} alt="logo" className="w-14 h-14 rounded-full"  />
-          <h1 className="text-2xl font-bold font-serif text-white" >
+        <div className="flex items-center gap-2" onClick={() => navigate("/")}>
+          <img src={logo} alt="logo" className="w-14 h-14 rounded-full" />
+          <h1 className="text-2xl font-bold font-serif text-white">
             FRIEND'S COLLECTION
           </h1>
         </div>
