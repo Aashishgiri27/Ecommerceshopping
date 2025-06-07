@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const baseUrl = 'http://127.0.0.1:3000';
+const baseUrl = 'https://ecommerceshopping-3.onrender.com';
 
 function Reviws({product}) {
   const [reviewData, setReviewData] = useState({
