@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import Reviws from "./Reviws";
 import { useContext } from "react";
 import { CartContext } from "../CartContext";
-const baseUrl = 'http://127.0.0.1:3000'
+const baseUrl = 'https://ecommerceshopping-3.onrender.com'
 function Detail() {
   const { id } = useParams();
   // console.log(id);
