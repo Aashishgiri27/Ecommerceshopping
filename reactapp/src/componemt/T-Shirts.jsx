@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { useLocation,useNavigate } from "react-router-dom";
 
 import axios from "axios";
-const baseUrl = 'http://127.0.0.1:3000'
+const baseUrl = 'https://ecommerceshopping-3.onrender.com'
 
 function TShirts() {
   const [data, setData] = useState([]);
