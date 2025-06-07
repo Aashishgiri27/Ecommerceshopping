@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from './Layout';
 import axios from 'axios';
 
-const baseUrl = 'http://127.0.0.1:3000';
+const baseUrl = 'https://ecommerceshopping-3.onrender.com';
 
 function AdminReview() {
   const [data, setData] = useState([]);
