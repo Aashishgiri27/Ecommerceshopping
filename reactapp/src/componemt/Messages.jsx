@@ -10,7 +10,7 @@ import Footer from "./Footer";
 import facebook from "../images/facebook.png";
 import twitter from "../images/twitter.png";
 import instagram from "../images/instagram.png";
-const baseUrl = 'http://127.0.0.1:3000'
+const baseUrl = 'https://ecommerceshopping-3.onrender.com'
 
 function Messages() {
     const [userquery, setuserquery] = useState({
