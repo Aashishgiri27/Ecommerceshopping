@@ -7,7 +7,7 @@ import { CartContext } from "../CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-const baseUrl = "http://127.0.0.1:3000";
+const baseUrl = "https://ecommerceshopping-3.onrender.com";
 function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
   const [activeTab, setActiveTab] = useState("cart");
