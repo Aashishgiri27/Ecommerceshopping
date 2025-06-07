@@ -3,7 +3,7 @@ import axios from "axios";
 import Layout from "./Layout";
 import toast from "react-hot-toast";
 
-const baseUrl = "http://127.0.0.1:3000";
+const baseUrl = "https://ecommerceshopping-3.onrender.com";
 
 function Form() {
   const [itemdata, setitemdata] = useState({
