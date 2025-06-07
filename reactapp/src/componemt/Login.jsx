@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Modal from "react-modal";
 
-const baseUrl = "http://127.0.0.1:3000";
+const baseUrl = "https://ecommerceshopping-3.onrender.com";
 
 function Login() {
   const [data, setData] = useState({
