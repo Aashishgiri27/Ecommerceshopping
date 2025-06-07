@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Layout from './Layout';
 
-const baseUrl = 'http://127.0.0.1:3000';
+const baseUrl = 'https://ecommerceshopping-3.onrender.com';
 
 const AdminPurchaseList = () => {
   const [purchases, setPurchases] = useState([]);
