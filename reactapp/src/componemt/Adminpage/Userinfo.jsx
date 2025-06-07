@@ -3,7 +3,7 @@ import Layout from './Layout'
 import  { useState, useEffect } from "react";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 import axios from "axios";
-const baseUrl = 'http://127.0.0.1:3000'
+const baseUrl = 'https://ecommerceshopping-3.onrender.com'
 function    Userinfo() {
   const [data, setData] = useState([]);
   useEffect(() => {
