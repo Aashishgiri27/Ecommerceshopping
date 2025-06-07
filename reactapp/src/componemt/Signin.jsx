@@ -5,7 +5,7 @@ import { Link, useNavigate,useLocation  } from "react-router-dom";
 import toast from 'react-hot-toast';
 import axios from "axios";
 import Footer from "./Footer";
-const baseUrl = 'http://127.0.0.1:3000'
+const baseUrl = 'https://ecommerceshopping-3.onrender.com'
 
 // import "../css/signin.css";
 // import "../css/product.css";
