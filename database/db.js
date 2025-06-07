@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 // const mongooseurl = "mongodb://localhost:27017/Prodeuct";
-const mongooseurl ="mongodb+srv://aashishgiri:notesmaker2025@cluster0.xjcnlba.mongodb.net/Prodeuct?retryWrites=true&w=majority&tlsAllowInvalidCertificates=true"
+const mongooseurl =process.env.MONGO_URI
 // mongoose.connect("mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority")
 
 mongoose.connect(mongooseurl);
