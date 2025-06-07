@@ -3,7 +3,7 @@ import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "./Footer";
 import Navigationbar from "./Navigationbar";
-const baseUrl = 'http://127.0.0.1:3000'
+const baseUrl = 'https://ecommerceshopping-3.onrender.com'
 function SearchResults() {
   const { name } = useParams();
   const [products, setProducts] = useState([]);
