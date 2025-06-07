@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "./Layout";
-const baseUrl = "http://127.0.0.1:3000";
+const baseUrl = "https://ecommerceshopping-3.onrender.com";
 function Adminproduct() {
   const [data, setData] = useState([]);
 
