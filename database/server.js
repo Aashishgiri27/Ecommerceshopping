@@ -12,7 +12,7 @@ const db = require("./db");
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
 
-app.use(core({ origin: "http://localhost:5173" }));
+app.use(core({ origin: "https://ecommerceshopping-2.onrender.com" }));
 // passport.use(new LocalStrategy(async (username,password,done)=>{
 //     try {
 //         const user= await usermodel.findOne({Username:username})
