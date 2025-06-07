@@ -11,7 +11,7 @@ import festival from "../images/festival.gif";
 import { Link,  useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Reviws from "./Reviws";
-const baseUrl = 'http://127.0.0.1:3000'
+const baseUrl = 'https://ecommerceshopping-3.onrender.com'
 
 
 const item=[
